@@ -1,10 +1,10 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/colors';
-import fonts from '../../theme/fonts';
+import styles from './styles';
 
 const FeedPost = () => {
   return (
@@ -82,55 +82,3 @@ const FeedPost = () => {
 };
 
 export default FeedPost;
-
-const styles = StyleSheet.create({
-  post: {},
-  image: {
-    width: '100%',
-    aspectRatio: 1,
-  },
-  header: {
-    flexDirection: 'row',
-    padding: 10,
-    alignItems: 'center',
-  },
-  avatar: {
-    width: 40,
-    aspectRatio: 1,
-    borderRadius: 20,
-    marginRight: 10,
-  },
-  name: {
-    fontWeight: fonts.weight.bold,
-    color: colors.black,
-  },
-  threeDots: {
-    marginLeft: 'auto',
-  },
-  footer: {
-    padding: 10,
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    marginBottom: 5,
-  },
-  icon: {
-    marginHorizontal: 5,
-  },
-  text: {
-    color: colors.black,
-    lineHeight: 18,
-  },
-  bold: {
-    fontWeight: fonts.weight.bold,
-  },
-  comment: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  commentText: {
-    color: colors.black,
-    lineHeight: 18,
-    flex: 1,
-  },
-});
