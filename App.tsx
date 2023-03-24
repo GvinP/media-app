@@ -1,5 +1,5 @@
 import {View, StyleSheet} from 'react-native';
-import FeedPost from './src/components/FeedPost/FeedPost';
+import FeedPost from './src/components/FeedPost';
 
 const App = () => {
   return (
