@@ -1,14 +1,14 @@
-import {View, Text} from 'react-native';
-import React from 'react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import {View, StyleSheet} from 'react-native';
+import FeedPost from './src/components/FeedPost/FeedPost';
 
 const App = () => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <AntDesign name='retweet'/>
-      <Text>App</Text>
+    <View style={{flex: 1}}>
+      <FeedPost />
     </View>
   );
 };
 
 export default App;
+
+const styles = StyleSheet.create({});
