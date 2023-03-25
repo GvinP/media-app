@@ -6,7 +6,11 @@ const posts = [
   {
     id: '1',
     createdAt: '19 December 2021',
-    image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
+    images: [
+      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
+      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg',
+      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/3.jpg',
+    ],
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repellendus unde blanditiis. Eos fugiat dolorem ea fugit aut sapiente corrupti autem dolores deleniti architecto, omnis, amet unde dignissimos quam minima?',
     user: {

@@ -1,7 +1,8 @@
 export interface IPost {
   id: string;
   createdAt: string;
-  image: string;
+  image?: string;
+  images?: string[];
   description: string;
   user: IUser;
   nofComments: number;

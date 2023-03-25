@@ -5,15 +5,28 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/colors';
 import styles from './styles';
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import Comment from '../Comment';
 import {IPost} from '../../types/models';
+import DoublePressable from '../DoublePressable/intex';
+import Carusel from '../Carousel';
 
 interface FeedPostProps {
   post: IPost;
 }
 
 const FeedPost: FC<FeedPostProps> = ({post}) => {
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const toggleDescriptionExpanded = () =>
+    setIsDescriptionExpanded(prev => !prev);
+  const toddleLike = () => setIsLiked(prev => !prev);
+  let content = null;
+  if (post.image) {
+    content = <Image source={{uri: post.image}} style={styles.image} />;
+  } else if (post.images) {
+    content = <Carusel images={post.images} />;
+  }
   return (
     <View style={styles.post}>
       <View style={styles.header}>
@@ -21,14 +34,16 @@ const FeedPost: FC<FeedPostProps> = ({post}) => {
         <Text style={styles.name}>{post.user.username}</Text>
         <Entypo name="dots-three-horizontal" style={styles.threeDots} />
       </View>
-      <Image source={{uri: post.image}} style={styles.image} />
+      {content}
+      {/* <DoublePressable onDoublePress={toddleLike}>{content}</DoublePressable> */}
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
           <AntDesign
-            name={false ? 'heart' : 'hearto'}
+            name={isLiked ? 'heart' : 'hearto'}
             size={24}
             style={styles.icon}
-            color={colors.black}
+            color={isLiked ? colors.accent : colors.black}
+            onPress={toddleLike}
           />
           <Ionicons
             name="chatbubble-outline"
@@ -53,9 +68,12 @@ const FeedPost: FC<FeedPostProps> = ({post}) => {
           Liked by <Text style={styles.bold}>username</Text> and{' '}
           <Text style={styles.bold}>{post.nofLikes} others</Text>
         </Text>
-        <Text style={styles.text}>
+        <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 0 : 3}>
           <Text style={styles.bold}>{post.user.username}</Text>{' '}
           {post.description}
+        </Text>
+        <Text onPress={toggleDescriptionExpanded}>
+          {isDescriptionExpanded ? 'less' : 'more'}
         </Text>
         <Text>View all {post.nofComments} comments</Text>
         {post.comments.map(comment => (
