@@ -23,9 +23,13 @@ const FeedPost: FC<FeedPostProps> = ({post}) => {
   const toddleLike = () => setIsLiked(prev => !prev);
   let content = null;
   if (post.image) {
-    content = <Image source={{uri: post.image}} style={styles.image} />;
+    content = (
+      <DoublePressable onDoublePress={toddleLike}>
+        <Image source={{uri: post.image}} style={styles.image} />
+      </DoublePressable>
+    );
   } else if (post.images) {
-    content = <Carusel images={post.images} />;
+    content = <Carusel images={post.images} onDoublePress={toddleLike} />;
   }
   return (
     <View style={styles.post}>
@@ -35,7 +39,6 @@ const FeedPost: FC<FeedPostProps> = ({post}) => {
         <Entypo name="dots-three-horizontal" style={styles.threeDots} />
       </View>
       {content}
-      {/* <DoublePressable onDoublePress={toddleLike}>{content}</DoublePressable> */}
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
           <AntDesign

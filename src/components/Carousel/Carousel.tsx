@@ -1,24 +1,49 @@
-import {View, FlatList, Image, useWindowDimensions} from 'react-native';
-import React, {FC, useState} from 'react';
+import {
+  View,
+  FlatList,
+  Image,
+  useWindowDimensions,
+  ViewToken,
+  ViewabilityConfig,
+} from 'react-native';
+import React, {FC, useCallback, useState} from 'react';
 import colors from '../../theme/colors';
+import DoublePressable from '../DoublePressable/intex';
 
 interface ICarousel {
   images: string[];
+  onDoublePress?: () => void;
 }
 
-const Carousel: FC<ICarousel> = ({images}) => {
+const Carousel: FC<ICarousel> = ({images, onDoublePress = () => {}}) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const {width} = useWindowDimensions();
+  const viewabilityConfig: ViewabilityConfig = {
+    itemVisiblePercentThreshold: 51,
+  };
+  const onViewableItemsChanged = useCallback(
+    ({viewableItems}: {viewableItems: ViewToken[]}) => {
+      if (viewableItems.length > 0) {
+        setActiveImageIndex(viewableItems[0].index || 0);
+      }
+    },
+    [],
+  );
   return (
     <View>
       <FlatList
         data={images}
         renderItem={({item}) => (
-          <Image source={{uri: item}} style={{width, aspectRatio: 1}} />
+          <DoublePressable {...{onDoublePress}}>
+            <Image source={{uri: item}} style={{width, aspectRatio: 1}} />
+          </DoublePressable>
         )}
         keyExtractor={(item, index) => `${item}.${index}`}
+        showsHorizontalScrollIndicator={false}
         horizontal
         pagingEnabled
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
       />
       <View
         style={{
