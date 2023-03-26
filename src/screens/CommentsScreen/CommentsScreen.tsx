@@ -1,17 +1,21 @@
-import {FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import React from 'react';
 import comments from '../../assets/data/comments.json';
 import Comment from '../../components/Comment';
+import Input from './Input';
 
 const CommentsScreen = () => {
   return (
-    <FlatList
-      data={comments}
-      renderItem={({item}) => <Comment comment={item} includeDetails />}
-      keyExtractor={item => item.id}
-      showsVerticalScrollIndicator={false}
-      style={{padding: 10}}
-    />
+    <View style={{flex: 1}}>
+      <FlatList
+        data={comments}
+        renderItem={({item}) => <Comment comment={item} includeDetails />}
+        keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false}
+        style={{padding: 10}}
+      />
+      <Input />
+    </View>
   );
 };
 
