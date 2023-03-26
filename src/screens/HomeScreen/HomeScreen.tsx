@@ -1,8 +1,9 @@
 import {FlatList, ViewabilityConfig, ViewToken} from 'react-native';
 import React, {useCallback, useState} from 'react';
 import FeedPost from '../../components/FeedPost';
+import posts from '../../assets/data/posts.json'
 
-const posts = [
+const postsw = [
   {
     id: '5',
     createdAt: '19 December 2021',
