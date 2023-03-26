@@ -3,6 +3,7 @@ export interface IPost {
   createdAt: string;
   image?: string;
   images?: string[];
+  video?: string;
   description: string;
   user: IUser;
   nofComments: number;
