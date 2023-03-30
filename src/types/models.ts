@@ -19,6 +19,9 @@ export interface IComment {
 
 export interface IUser {
   id: string;
+  name: string;
   username: string;
+  bio?: string;
+  website?: string;
   image?: string;
 }
