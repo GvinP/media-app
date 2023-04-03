@@ -1,18 +1,7 @@
-import {View, StyleSheet} from 'react-native';
-import CommentsScreen from './src/screens/CommentsScreen';
-import EditProfileScreen from './src/screens/EditProfileScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import PostUploadScreen from './src/screens/PostUploadScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
+import Navigation from './src/navigation';
 
 const App = () => {
-  return (
-    <View style={{flex: 1}}>
-      <PostUploadScreen />
-    </View>
-  );
+  return <Navigation />;
 };
 
 export default App;
-
-const styles = StyleSheet.create({});
