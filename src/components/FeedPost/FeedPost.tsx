@@ -11,6 +11,7 @@ import {IPost} from '../../types/models';
 import DoublePressable from '../DoublePressable/intex';
 import Carusel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
+import {useNavigation} from '@react-navigation/native';
 
 interface FeedPostProps {
   post: IPost;
@@ -20,6 +21,7 @@ interface FeedPostProps {
 const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const navigation = useNavigation();
   const toggleDescriptionExpanded = () =>
     setIsDescriptionExpanded(prev => !prev);
   const toddleLike = () => setIsLiked(prev => !prev);
@@ -39,11 +41,15 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
       </DoublePressable>
     );
   }
+  const navigateToUser = () =>
+    navigation.navigate('UserProfile', {user: post.user});
   return (
     <View style={styles.post}>
       <View style={styles.header}>
-        <Image source={{uri: post.user.image}} style={styles.avatar} />
-        <Text style={styles.name}>{post.user.username}</Text>
+        <Image source={{uri: post.user?.image}} style={styles.avatar} />
+        <Text onPress={navigateToUser} style={styles.name}>
+          {post.user?.username}
+        </Text>
         <Entypo name="dots-three-horizontal" style={styles.threeDots} />
       </View>
       {content}
@@ -80,14 +86,14 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
           <Text style={styles.bold}>{post.nofLikes} others</Text>
         </Text>
         <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 0 : 3}>
-          <Text style={styles.bold}>{post.user.username}</Text>{' '}
+          <Text style={styles.bold}>{post.user?.username}</Text>{' '}
           {post.description}
         </Text>
         <Text onPress={toggleDescriptionExpanded}>
           {isDescriptionExpanded ? 'less' : 'more'}
         </Text>
         <Text>View all {post.nofComments} comments</Text>
-        {post.comments.map(comment => (
+        {post.comments?.map(comment => (
           <Comment {...{comment}} key={comment.id} />
         ))}
         <Text>{post.createdAt}</Text>

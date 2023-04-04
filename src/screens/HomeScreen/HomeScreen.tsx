@@ -1,7 +1,7 @@
 import {FlatList, ViewabilityConfig, ViewToken} from 'react-native';
 import React, {useCallback, useState} from 'react';
 import FeedPost from '../../components/FeedPost';
-import posts from '../../assets/data/posts.json'
+import posts from '../../assets/data/posts.json';
 
 const HomeScreen = () => {
   const [activePostId, setActivePostId] = useState<string | null>(null);

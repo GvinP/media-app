@@ -2,12 +2,16 @@ import {View, Text, Image} from 'react-native';
 import {FC} from 'react';
 import styles from './styles';
 import Button from '../../components/Button';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 interface IProfileHeader {
   user: any;
 }
 
 const ProfileHeader: FC<IProfileHeader> = ({user}) => {
+  const route = useRoute();
+  const navigation = useNavigation();
+  navigation.setOptions({title: route.params?.user.username});
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
