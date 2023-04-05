@@ -12,6 +12,7 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const route = useRoute();
   const navigation = useNavigation();
   navigation.setOptions({title: route.params?.user.username});
+  const navigateToEditProfile = () => navigation.navigate('EditProfile');
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
@@ -32,7 +33,7 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
       <Text style={styles.name}>{user.name}</Text>
       <Text>{user.bio}</Text>
       <View style={{flexDirection: 'row'}}>
-        <Button title="Edit Profile" onPress={() => {}} />
+        <Button title="Edit Profile" onPress={navigateToEditProfile} />
         <Button title="Another Button" onPress={() => {}} />
       </View>
     </View>

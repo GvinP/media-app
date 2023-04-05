@@ -43,6 +43,8 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   }
   const navigateToUser = () =>
     navigation.navigate('UserProfile', {user: post.user});
+  const navigateToComments = () =>
+    navigation.navigate('Comments', {postId: post.id});
   return (
     <View style={styles.post}>
       <View style={styles.header}>
@@ -92,7 +94,9 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
         <Text onPress={toggleDescriptionExpanded}>
           {isDescriptionExpanded ? 'less' : 'more'}
         </Text>
-        <Text>View all {post.nofComments} comments</Text>
+        <Text onPress={navigateToComments}>
+          View all {post.nofComments} comments
+        </Text>
         {post.comments?.map(comment => (
           <Comment {...{comment}} key={comment.id} />
         ))}
