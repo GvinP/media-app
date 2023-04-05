@@ -1,21 +1,18 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import BottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Feed">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-          name="Feed"
-          component={HomeScreen}
-          options={{
-            title: 'HomeScreen',
-            headerTitleAlign: 'center',
-          }}
+          name="Home"
+          component={BottomTabNavigator}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="UserProfile"
