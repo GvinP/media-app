@@ -12,6 +12,7 @@ import DoublePressable from '../DoublePressable/intex';
 import Carusel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
 import {useNavigation} from '@react-navigation/native';
+import { FeedNavigationProp } from '../../navigation/types';
 
 interface FeedPostProps {
   post: IPost;
@@ -21,7 +22,7 @@ interface FeedPostProps {
 const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const navigation = useNavigation();
+  const navigation = useNavigation<FeedNavigationProp>();
   const toggleDescriptionExpanded = () =>
     setIsDescriptionExpanded(prev => !prev);
   const toddleLike = () => setIsLiked(prev => !prev);
@@ -42,7 +43,7 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
     );
   }
   const navigateToUser = () =>
-    navigation.navigate('UserProfile', {user: post.user});
+    navigation.navigate('UserProfile', {userId: post.user?.id});
   const navigateToComments = () =>
     navigation.navigate('Comments', {postId: post.id});
   return (

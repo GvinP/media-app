@@ -5,7 +5,7 @@ export interface IPost {
   images?: string[];
   video?: string;
   description: string;
-  user?: IUser;
+  user: IUser;
   nofComments?: number;
   nofLikes?: number;
   comments?: IComment[];
