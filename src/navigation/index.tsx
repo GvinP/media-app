@@ -1,14 +1,34 @@
-import {NavigationContainer} from '@react-navigation/native';
+import {LinkingOptions, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTabNavigator from './BottomTabNavigator';
 import CommentsScreen from '../screens/CommentsScreen/CommentsScreen';
-import {RootNavigator} from './types';
+import {RootNavigatorParamList} from './types';
 
-const Stack = createNativeStackNavigator<RootNavigator>();
+const Stack = createNativeStackNavigator<RootNavigatorParamList>();
+
+const linking: LinkingOptions<RootNavigatorParamList> = {
+  prefixes: ['memberberries://'],
+  config: {
+    initialRouteName: 'Home',
+    screens: {
+      Comments: 'comments',
+      Home: {
+        screens: {
+          HomeStack: {
+            initialRouteName: 'Feed',
+            screens: {
+              UserProfile: 'user/:userId',
+            },
+          },
+        },
+      },
+    },
+  },
+};
 
 const Navigation = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer {...{linking}}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
