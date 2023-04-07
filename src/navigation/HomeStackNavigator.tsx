@@ -2,6 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import {HomeStackNavigatorParamList} from './types';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 
@@ -11,7 +12,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen
         name="Feed"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{title: 'Feed'}}
       />
       <Stack.Screen
         name="UserProfile"

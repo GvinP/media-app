@@ -23,6 +23,7 @@ const BottomTabNavigator = () => {
         component={HomeStackNavigator}
         options={{
           title: 'Home',
+          headerShown: false,
           tabBarIcon: ({color, size}) => (
             <MaterialIcons name="home-filled" {...{color, size}} />
           ),
