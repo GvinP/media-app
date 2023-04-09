@@ -3,6 +3,7 @@ import {FC} from 'react';
 import styles from './styles';
 import Button from '../../components/Button';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {Auth} from 'aws-amplify';
 import {
   ProfileNavigationProp,
   UserProfileRouteProp,
@@ -39,7 +40,7 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
       <Text>{user.bio}</Text>
       <View style={{flexDirection: 'row'}}>
         <Button title="Edit Profile" onPress={navigateToEditProfile} />
-        <Button title="Another Button" onPress={() => {}} />
+        <Button title="Sign out" onPress={() => Auth.signOut()} />
       </View>
     </View>
   );
