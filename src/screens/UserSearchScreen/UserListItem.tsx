@@ -4,7 +4,7 @@ import {IUser} from '../../types/models';
 import fonts from '../../theme/fonts';
 import colors from '../../theme/colors';
 import {useNavigation} from '@react-navigation/native';
-import {UserProfileNavigationProp} from '../../navigation/types';
+import {UserProfileNavigationProp} from '../../types/navigation';
 
 interface IUserListItem {
   user: IUser;
@@ -13,7 +13,8 @@ interface IUserListItem {
 const UserListItem: FC<IUserListItem> = ({user}) => {
   const navigation = useNavigation<UserProfileNavigationProp>();
 
-  const goToUserScreen = () => navigation.navigate('UserProfile', {user: user});
+  const goToUserScreen = () =>
+    navigation.navigate('UserProfile', {userId: user.id});
   return (
     <Pressable style={styles.container} onPress={goToUserScreen}>
       <Image source={{uri: user.image}} style={styles.image} />

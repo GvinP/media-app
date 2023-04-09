@@ -1,5 +1,5 @@
 import {useState, useEffect, useRef} from 'react';
-import {StyleSheet, View, Text, Pressable} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import {
   Camera,

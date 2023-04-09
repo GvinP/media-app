@@ -1,8 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
-import {HomeStackNavigatorParamList} from './types';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {HomeStackNavigatorParamList} from '../types/navigation';
 
 const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 

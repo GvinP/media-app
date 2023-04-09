@@ -4,11 +4,12 @@ import styles from './styles';
 import Button from '../../components/Button';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Auth} from 'aws-amplify';
-import {
-  ProfileNavigationProp,
-  UserProfileRouteProp,
-} from '../../navigation/types';
+// import {
+//   ProfileNavigationProp,
+//   UserProfileRouteProp,
+// } from '../../navigation/types';
 import {IUser} from '../../types/models';
+import { ProfileNavigationProp, UserProfileRouteProp } from '../../types/navigation';
 
 interface IProfileHeader {
   user: IUser;
@@ -17,8 +18,8 @@ interface IProfileHeader {
 const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const route = useRoute<UserProfileRouteProp>();
   const navigation = useNavigation<ProfileNavigationProp>();
-  navigation.setOptions({title: route.params?.user.username});
-  const navigateToEditProfile = () => navigation.navigate('EditProfile');
+  navigation.setOptions({title: route.params?.userId});
+  const navigateToEditProfile = () => navigation.navigate('Edit Profile');
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
