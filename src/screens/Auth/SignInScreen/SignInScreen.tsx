@@ -7,7 +7,6 @@ import {
   Alert,
 } from 'react-native';
 import {Auth} from 'aws-amplify';
-import Logo from '../../../assets/images/logo.png';
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import SocialSignInButtons from '../components/SocialSignInButtons';
@@ -15,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {SignInNavigationProp} from '../../../types/navigation';
 import {useState} from 'react';
+import {useAuthContext} from '../../../contexts/AuthContext';
 
 type SignInData = {
   username: string;
@@ -25,17 +25,15 @@ const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation<SignInNavigationProp>();
   const [isLoading, setIsLoading] = useState(false);
-
+  const {setUser} = useAuthContext();
   const {control, handleSubmit, reset} = useForm<SignInData>();
 
   const onSignInPressed = async ({username, password}: SignInData) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const response = await Auth.signIn(username, password);
-      // TODO: save user data
-      console.log({response});
-      // navigation.navigate('Home');
+      const user = await Auth.signIn(username, password);
+      setUser(user);
     } catch (error) {
       if ((error as Error).name === 'UserNotConfirmedException') {
         navigation.navigate('Confirm email', {username});
@@ -60,7 +58,7 @@ const SignInScreen = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
         <Image
-          source={Logo}
+          source={require('../../../assets/images/logo.png')}
           style={[styles.logo, {height: height * 0.3}]}
           resizeMode="contain"
         />

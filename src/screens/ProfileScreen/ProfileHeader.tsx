@@ -4,12 +4,11 @@ import styles from './styles';
 import Button from '../../components/Button';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Auth} from 'aws-amplify';
-// import {
-//   ProfileNavigationProp,
-//   UserProfileRouteProp,
-// } from '../../navigation/types';
 import {IUser} from '../../types/models';
-import { ProfileNavigationProp, UserProfileRouteProp } from '../../types/navigation';
+import {
+  ProfileNavigationProp,
+  UserProfileRouteProp,
+} from '../../types/navigation';
 
 interface IProfileHeader {
   user: IUser;
