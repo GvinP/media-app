@@ -1,4 +1,4 @@
-package com.instagram;
+package com.member.berries;
 import expo.modules.ReactActivityDelegateWrapper;
 
 import com.facebook.react.ReactActivity;
@@ -15,7 +15,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "instagram";
+    return "memberberries";
   }
 
   /**

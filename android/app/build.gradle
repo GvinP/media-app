@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.instagram"
+    namespace "com.member.berries"
     defaultConfig {
-        applicationId "com.instagram"
+        applicationId "com.member.berries"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
