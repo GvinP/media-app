@@ -3,7 +3,7 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "member2904c584",
+    "resourceNameTruncated": "member03b599b9",
     "userPoolName": "memberberries",
     "autoVerifiedAttributes": [
       "email"
@@ -33,18 +33,29 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "member2904c584_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "member03b599b9_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "2904c584",
+    "sharedId": "03b599b9",
     "resourceName": "memberberries",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
+    "usernameAttributes": [
+      "email"
+    ],
     "useDefault": "manual",
     "userPoolGroups": false,
     "userPoolGroupList": [],
     "adminQueries": false,
     "thirdPartyAuth": false,
     "authProviders": [],
+    "hostedUI": true,
+    "hostedUIDomainName": "87ye9nvex9r8",
+    "authProvidersUserPool": [
+      "Facebook",
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"memberberries://\"],\"LogoutURLs\":[\"memberberries://\"]}",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
   }
