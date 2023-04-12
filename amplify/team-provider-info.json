@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-memberberries-staging-72425-unauthRole",
       "StackName": "amplify-memberberries-staging-72425",
       "StackId": "arn:aws:cloudformation:eu-west-1:578321136858:stack/amplify-memberberries-staging-72425/6436c380-d5de-11ed-bf50-0210c9838347",
-      "AmplifyAppId": "d2sbpkee6gqzom"
+      "AmplifyAppId": "d2sbpkee6gqzom",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-memberberries-staging-72425-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -19,11 +20,10 @@
         }
       },
       "function": {
-        "InstagramPostConfirmation": {},
         "memberberries49750360": {},
-        "memberberrieslayer05bd0630": {
+        "memberberriesPostConfirmation": {
           "deploymentBucketName": "amplify-memberberries-staging-72425-deployment",
-          "s3Key": "amplify-builds/memberberrieslayer05bd0630-LambdaLayerVersion2fb8f90e-build.zip"
+          "s3Key": "amplify-builds/memberberriesPostConfirmation-2b6c3478557262697971-build.zip"
         }
       }
     }

@@ -46,11 +46,8 @@
     "userPoolGroups": false,
     "userPoolGroupList": [],
     "adminQueries": false,
-    "thirdPartyAuth": true,
-    "authProviders": [
-      "graph.facebook.com",
-      "accounts.google.com"
-    ],
+    "thirdPartyAuth": false,
+    "authProviders": [],
     "hostedUI": true,
     "hostedUIDomainName": "87ye9nvex9r8",
     "authProvidersUserPool": [
@@ -73,12 +70,27 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [],
-    "triggers": {},
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"memberberries://\"],\"LogoutURLs\":[\"memberberries://\"]}",
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "memberberriesPostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "triggers": {
+      "PostConfirmation": [
+        "custom"
+      ]
+    },
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"memberberries://\"],\"LogoutURLs\":[\"memberberries://\"]}",
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"memberberriesPostConfirmation\"\n  }\n]"
   }
 }

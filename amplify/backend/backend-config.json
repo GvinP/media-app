@@ -2,7 +2,17 @@
   "auth": {
     "memberberries": {
       "customAuth": false,
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "memberberriesPostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -37,25 +47,10 @@
     }
   },
   "function": {
-    "InstagramPostConfirmation": {
+    "memberberriesPostConfirmation": {
       "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ],
-          "category": "api",
-          "resourceName": "Instagram"
-        }
-      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    },
-    "memberberrieslayer05bd0630": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer"
     }
   },
   "parameters": {
@@ -75,19 +70,19 @@
         }
       ]
     },
-    "AMPLIFY_function_memberberrieslayer05bd0630_deploymentBucketName": {
+    "AMPLIFY_function_memberberriesPostConfirmation_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "memberberrieslayer05bd0630"
+          "resourceName": "memberberriesPostConfirmation"
         }
       ]
     },
-    "AMPLIFY_function_memberberrieslayer05bd0630_s3Key": {
+    "AMPLIFY_function_memberberriesPostConfirmation_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "memberberrieslayer05bd0630"
+          "resourceName": "memberberriesPostConfirmation"
         }
       ]
     }

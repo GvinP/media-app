@@ -15,8 +15,12 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "memberberrieslayer05bd0630": {
-      "Arn": "string"
+    "memberberriesPostConfirmation": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
     }
   }
 }
