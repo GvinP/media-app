@@ -3,6 +3,8 @@ export type AmplifyDependentResourcesAttributes = {
     "memberberries": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "FacebookWebClient": "string",
+      "GoogleWebClient": "string",
       "HostedUIDomain": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
@@ -10,6 +12,11 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
+    }
+  },
+  "function": {
+    "memberberrieslayer05bd0630": {
+      "Arn": "string"
     }
   }
 }

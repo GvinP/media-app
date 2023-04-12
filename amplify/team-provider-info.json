@@ -13,7 +13,18 @@
     },
     "categories": {
       "auth": {
-        "memberberries": {}
+        "memberberries": {
+          "facebookAppId": "206595145402258",
+          "googleClientId": "797723017080-5njatf6qd0p4kle9nm8a45ct4kd3vdfb.apps.googleusercontent.com"
+        }
+      },
+      "function": {
+        "InstagramPostConfirmation": {},
+        "memberberries49750360": {},
+        "memberberrieslayer05bd0630": {
+          "deploymentBucketName": "amplify-memberberries-staging-72425-deployment",
+          "s3Key": "amplify-builds/memberberrieslayer05bd0630-LambdaLayerVersion2fb8f90e-build.zip"
+        }
       }
     }
   }

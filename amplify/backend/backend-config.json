@@ -35,5 +35,61 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
     }
+  },
+  "function": {
+    "InstagramPostConfirmation": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "Instagram"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "memberberrieslayer05bd0630": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_memberberries_facebookAppId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "memberberries"
+        }
+      ]
+    },
+    "AMPLIFY_auth_memberberries_googleClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "memberberries"
+        }
+      ]
+    },
+    "AMPLIFY_function_memberberrieslayer05bd0630_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "memberberrieslayer05bd0630"
+        }
+      ]
+    },
+    "AMPLIFY_function_memberberrieslayer05bd0630_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "memberberrieslayer05bd0630"
+        }
+      ]
+    }
   }
 }
