@@ -25,6 +25,9 @@
           "deploymentBucketName": "amplify-memberberries-staging-72425-deployment",
           "s3Key": "amplify-builds/memberberriesPostConfirmation-2b6c3478557262697971-build.zip"
         }
+      },
+      "api": {
+        "memberberries": {}
       }
     }
   }
