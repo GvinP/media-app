@@ -72,6 +72,17 @@
   "function": {
     "memberberriesPostConfirmation": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "memberberries"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }

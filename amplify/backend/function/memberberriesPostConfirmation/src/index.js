@@ -1,4 +1,10 @@
-/**
+/* Amplify Params - DO NOT EDIT
+	API_MEMBERBERRIES_GRAPHQLAPIENDPOINTOUTPUT
+	API_MEMBERBERRIES_GRAPHQLAPIIDOUTPUT
+	API_MEMBERBERRIES_GRAPHQLAPIKEYOUTPUT
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT *//**
  * @fileoverview
  *
  * This CloudFormation Trigger creates a handler which awaits the other handlers
