@@ -2,9 +2,9 @@ import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {FC} from 'react';
 import colors from '../../theme/colors';
 import {Control, Controller} from 'react-hook-form';
-import {IUser} from '../../types/models';
+import {User} from '../../API';
 
-export type EditableUser = Pick<IUser, 'name' | 'bio' | 'username' | 'website'>;
+export type EditableUser = Pick<User, 'name' | 'bio' | 'username' | 'website'>;
 interface IInput {
   control: Control<EditableUser, object>;
   label: string;
