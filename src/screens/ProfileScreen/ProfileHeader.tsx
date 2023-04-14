@@ -4,14 +4,15 @@ import styles from './styles';
 import Button from '../../components/Button';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Auth} from 'aws-amplify';
-import {IUser} from '../../types/models';
 import {
   ProfileNavigationProp,
   UserProfileRouteProp,
 } from '../../types/navigation';
+import {User} from '../../API';
+import {DEFAULT_USER_IMAGE} from '../../config';
 
 interface IProfileHeader {
-  user: IUser;
+  user: User;
 }
 
 const ProfileHeader: FC<IProfileHeader> = ({user}) => {
@@ -22,22 +23,25 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Image source={{uri: user.image}} style={styles.avatar} />
+        <Image
+          source={{uri: user?.image || DEFAULT_USER_IMAGE}}
+          style={styles.avatar}
+        />
         <View style={styles.numberContainer}>
-          <Text style={styles.numberText}>98</Text>
+          <Text style={styles.numberText}>{user?.nofPosts}</Text>
           <Text>Posts</Text>
         </View>
         <View style={styles.numberContainer}>
-          <Text style={styles.numberText}>98</Text>
+          <Text style={styles.numberText}>{user?.nofFollowers}</Text>
           <Text>Folowers</Text>
         </View>
         <View style={styles.numberContainer}>
-          <Text style={styles.numberText}>98</Text>
+          <Text style={styles.numberText}>{user?.nofFollowings}</Text>
           <Text>Following</Text>
         </View>
       </View>
-      <Text style={styles.name}>{user.name}</Text>
-      <Text>{user.bio}</Text>
+      <Text style={styles.name}>{user?.name}</Text>
+      <Text>{user?.bio}</Text>
       <View style={{flexDirection: 'row'}}>
         <Button title="Edit Profile" onPress={navigateToEditProfile} />
         <Button title="Sign out" onPress={() => Auth.signOut()} />

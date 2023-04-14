@@ -1,10 +1,10 @@
 import {FlatList} from 'react-native';
 import {FC} from 'react';
-import {IPost} from '../../types/models';
 import FeedGridItem from './FeedGridItem';
+import {Post} from '../../API';
 
 interface IFeedGridView {
-  data: IPost[];
+  data: Post[];
   ListHeaderComponent?:
     | React.ComponentType<any>
     | React.ReactElement
