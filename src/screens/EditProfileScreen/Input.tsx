@@ -61,5 +61,6 @@ const styles = StyleSheet.create({
   },
   input: {
     borderBottomWidth: 1,
+    minHeight: 45,
   },
 });

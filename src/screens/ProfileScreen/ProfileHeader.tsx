@@ -10,12 +10,14 @@ import {
 } from '../../types/navigation';
 import {User} from '../../API';
 import {DEFAULT_USER_IMAGE} from '../../config';
+import {useAuthContext} from '../../contexts/AuthContext';
 
 interface IProfileHeader {
   user: User;
 }
 
 const ProfileHeader: FC<IProfileHeader> = ({user}) => {
+  const {userId} = useAuthContext();
   const route = useRoute<UserProfileRouteProp>();
   const navigation = useNavigation<ProfileNavigationProp>();
   navigation.setOptions({title: route.params?.userId});
@@ -42,10 +44,12 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
       </View>
       <Text style={styles.name}>{user?.name}</Text>
       <Text>{user?.bio}</Text>
-      <View style={{flexDirection: 'row'}}>
-        <Button title="Edit Profile" onPress={navigateToEditProfile} />
-        <Button title="Sign out" onPress={() => Auth.signOut()} />
-      </View>
+      {user.id === userId && (
+        <View style={{flexDirection: 'row'}}>
+          <Button title="Edit Profile" onPress={navigateToEditProfile} />
+          <Button title="Sign out" onPress={() => Auth.signOut()} />
+        </View>
+      )}
     </View>
   );
 };

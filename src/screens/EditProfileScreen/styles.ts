@@ -19,4 +19,10 @@ export default StyleSheet.create({
     fontWeight: fonts.weight.semi,
     margin: 10,
   },
+  buttonDelete: {
+    color: colors.accent,
+    fontSize: fonts.size.md,
+    fontWeight: fonts.weight.semi,
+    margin: 10,
+  },
 });
