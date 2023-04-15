@@ -7,6 +7,10 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AuthStackNavigator from './AuthStackNavigator';
 import {useAuthContext} from '../contexts/AuthContext';
 import {ActivityIndicator, View} from 'react-native';
+import {useQuery} from '@apollo/client';
+import {getUser} from './queries';
+import {GetUserQuery, GetUserQueryVariables} from '../API';
+import EditProfileScreen from '../screens/EditProfileScreen/EditProfileScreen';
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
@@ -31,9 +35,15 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 };
 
 const Navigation = () => {
-  const {user} = useAuthContext();
+  const {user, userId} = useAuthContext();
+  const {data, loading, error} = useQuery<GetUserQuery, GetUserQueryVariables>(
+    getUser,
+    {
+      variables: {id: userId},
+    },
+  );
 
-  if (user === undefined) {
+  if (user === undefined || loading) {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <ActivityIndicator />
@@ -41,27 +51,40 @@ const Navigation = () => {
     );
   }
 
+  let stackScreen = null;
+  if (!user) {
+    stackScreen = (
+      <Stack.Screen
+        name="Auth"
+        component={AuthStackNavigator}
+        options={{headerShown: false}}
+      />
+    );
+  } else if (!data?.getUser?.username) {
+    stackScreen = (
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfileScreen}
+        options={{title: 'Edit Profile'}}
+      />
+    );
+  } else {
+    stackScreen = (
+      <>
+        <Stack.Screen
+          name="Home"
+          component={BottomTabNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="Comments" component={CommentsScreen} />
+      </>
+    );
+  }
+
   return (
     <SafeAreaProvider>
       <NavigationContainer {...{linking}}>
-        <Stack.Navigator>
-          {!user ? (
-            <Stack.Screen
-              name="Auth"
-              component={AuthStackNavigator}
-              options={{headerShown: false}}
-            />
-          ) : (
-            <>
-              <Stack.Screen
-                name="Home"
-                component={BottomTabNavigator}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen name="Comments" component={CommentsScreen} />
-            </>
-          )}
-        </Stack.Navigator>
+        <Stack.Navigator>{stackScreen}</Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
   );

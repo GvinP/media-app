@@ -4,8 +4,8 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import styles from './styles';
 import Input, {EditableUser} from './Input';
 import {useEffect, useState} from 'react';
-import {useMutation, useQuery} from '@apollo/client';
-import {deleteUser, getUser, updateUser} from './queries';
+import {useMutation, useQuery, useLazyQuery} from '@apollo/client';
+import {deleteUser, getUser, updateUser, usersByUsername} from './queries';
 import {
   DeleteUserMutation,
   DeleteUserMutationVariables,
@@ -13,6 +13,8 @@ import {
   GetUserQueryVariables,
   UpdateUserMutation,
   UpdateUserMutationVariables,
+  UsersByUsernameQuery,
+  UsersByUsernameQueryVariables,
 } from '../../API';
 import {DEFAULT_USER_IMAGE} from '../../config';
 import {useAuthContext} from '../../contexts/AuthContext';
@@ -37,6 +39,10 @@ const EditProfileScreen = () => {
     useMutation<UpdateUserMutation, UpdateUserMutationVariables>(updateUser);
   const [doDeleteUser, {loading: deleteLoading, error: deleteError}] =
     useMutation<DeleteUserMutation, DeleteUserMutationVariables>(deleteUser);
+  const [getUsersByUsername] = useLazyQuery<
+    UsersByUsernameQuery,
+    UsersByUsernameQueryVariables
+  >(usersByUsername);
 
   useEffect(() => {
     if (user) {
@@ -51,12 +57,14 @@ const EditProfileScreen = () => {
     doUpdateUser({
       variables: {input: {id: userId, ...data, _version: user?._version}},
     });
-    navigation.goBack();
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
   };
   const onChangePhoto = () => {
     launchImageLibrary(
       {mediaType: 'photo'},
-      ({didCancel, errorCode, errorMessage, assets}) => {
+      ({didCancel, errorCode, assets}) => {
         if (!didCancel && !errorCode) {
           setSelectedPhoto(assets?.[0].uri || '');
         }
@@ -81,6 +89,23 @@ const EditProfileScreen = () => {
     });
   };
 
+  const validateUsername = async (username: string) => {
+    try {
+      const response = await getUsersByUsername({variables: {username}});
+      if (response.error) {
+        Alert.alert('Failed to fetch username');
+        return 'Failed to fetch username';
+      }
+      const users = response.data?.usersByUsername?.items;
+      if (users && users.length > 0 && users[0]?.id !== userId) {
+        return 'Username is already taken';
+      }
+    } catch (error) {
+      Alert.alert('Failed to fetch username');
+    }
+    return true;
+  };
+
   if (loading) {
     return <ActivityIndicator />;
   }
@@ -98,7 +123,7 @@ const EditProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={{uri: selectedPhoto || DEFAULT_USER_IMAGE}}
+        source={{uri: selectedPhoto || user?.image || DEFAULT_USER_IMAGE}}
         style={styles.avatar}
       />
       <Text onPress={onChangePhoto} style={styles.button}>
@@ -119,6 +144,7 @@ const EditProfileScreen = () => {
             value: 3,
             message: 'Username should be more than 3 characters',
           },
+          validate: validateUsername,
         }}
         {...{control}}
       />

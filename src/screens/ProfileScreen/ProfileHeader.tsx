@@ -20,7 +20,7 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const {userId} = useAuthContext();
   const route = useRoute<UserProfileRouteProp>();
   const navigation = useNavigation<ProfileNavigationProp>();
-  navigation.setOptions({title: route.params?.userId});
+  navigation.setOptions({title: user?.username || 'Profile'});
   const navigateToEditProfile = () => navigation.navigate('Edit Profile');
   return (
     <View style={styles.container}>

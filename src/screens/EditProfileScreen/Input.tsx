@@ -28,7 +28,8 @@ const Input: FC<IInput> = ({
           <Text style={styles.label}>{label}</Text>
           <View style={{flex: 1}}>
             <TextInput
-              {...{value, onBlur, multiline}}
+              {...{onBlur, multiline}}
+              value={value || ''}
               onChangeText={onChange}
               placeholder={label}
               style={[
