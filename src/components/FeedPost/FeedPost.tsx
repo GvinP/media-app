@@ -1,4 +1,4 @@
-import {Image, Text, View} from 'react-native';
+import {Alert, Image, Text, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -14,6 +14,7 @@ import VideoPlayer from '../VideoPlayer';
 import {useNavigation} from '@react-navigation/native';
 import {FeedNavigationProp} from '../../types/navigation';
 import {DEFAULT_USER_IMAGE} from '../../config';
+import Menu from './Menu';
 
 interface FeedPostProps {
   post: Post;
@@ -46,6 +47,7 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   const navigateToUser = () =>
     post.User && navigation.navigate('UserProfile', {userId: post.User?.id});
   const navigateToComments = () =>
+    //@ts-ignore
     navigation.navigate('Comments', {postId: post.id});
   return (
     <View style={styles.post}>
@@ -57,7 +59,7 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
         <Text onPress={navigateToUser} style={styles.name}>
           {post.User?.username}
         </Text>
-        <Entypo name="dots-three-horizontal" style={styles.threeDots} />
+        <Menu post={post} />
       </View>
       {content}
       <View style={styles.footer}>
@@ -102,9 +104,9 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
         <Text onPress={navigateToComments}>
           View all {post.nofComments} comments
         </Text>
-        {post.Comments?.items.map(comment => (
-          <Comment {...{comment}} key={comment?.id} />
-        ))}
+        {post.Comments?.items.map(
+          comment => comment && <Comment {...{comment}} key={comment?.id} />,
+        )}
         <Text>{post.createdAt}</Text>
       </View>
     </View>

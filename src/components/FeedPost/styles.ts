@@ -43,4 +43,9 @@ export default StyleSheet.create({
   bold: {
     fontWeight: fonts.weight.bold,
   },
+  optionText: {
+    textAlign: 'center',
+    fontSize: fonts.size.md,
+    padding: 10,
+  },
 });

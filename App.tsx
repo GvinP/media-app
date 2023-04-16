@@ -5,6 +5,7 @@ import AuthContextProvider from './src/contexts/AuthContext';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {Linking} from 'react-native';
 import Client from './src/apollo/Client';
+import {MenuProvider} from 'react-native-popup-menu';
 
 const urlOpener = async (url: string, redirectUrl: string) => {
   await InAppBrowser.isAvailable();
@@ -33,9 +34,11 @@ Amplify.configure(updatedConfig);
 const App = () => {
   return (
     <AuthContextProvider>
-      <Client>
-        <Navigation />
-      </Client>
+      <MenuProvider>
+        <Client>
+          <Navigation />
+        </Client>
+      </MenuProvider>
     </AuthContextProvider>
   );
 };

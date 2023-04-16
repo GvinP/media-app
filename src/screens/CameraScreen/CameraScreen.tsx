@@ -10,6 +10,8 @@ import {
   VideoQuality,
 } from 'expo-camera';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
+import {UploadNavigationProp} from '../../types/navigation';
 
 const flashModes = [
   FlashMode.off,
@@ -25,13 +27,14 @@ const flashModeToIcon = {
   [FlashMode.torch]: 'highlight' as const,
 };
 
-const PostUploadScreen = () => {
+const CameraScreen = () => {
   const [hasPermissions, setHasPermissions] = useState<boolean | null>(null);
   const [cameraType, setCameraType] = useState<CameraType>(CameraType.back);
   const [flash, setFlash] = useState(FlashMode.off);
   const [isCameraReady, setIsCameraReady] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const camera = useRef<Camera>(null);
+  const navigation = useNavigation<UploadNavigationProp>();
   useEffect(() => {
     const getPermission = async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync();
@@ -115,7 +118,7 @@ const PostUploadScreen = () => {
       </View>
       <View style={[styles.buttonContainer, {bottom: 10}]}>
         <MaterialIcons name="photo-library" size={30} color="#fff" />
-        {isCameraReady && (
+        {/* {isCameraReady && (
           <Pressable
             onPress={takePicture}
             onLongPress={startRecording}
@@ -127,7 +130,18 @@ const PostUploadScreen = () => {
               ]}
             />
           </Pressable>
-        )}
+        )} */}
+        <Pressable
+          onPress={() =>
+            navigation.navigate('CreatePost', {
+              images: [
+                'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
+                'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg',
+              ],
+            })
+          }>
+          <View style={[styles.circle, {backgroundColor: '#fff'}]} />
+        </Pressable>
         <Pressable onPress={flipCamera}>
           <MaterialIcons name="flip-camera-ios" size={30} color="#fff" />
         </Pressable>
@@ -136,4 +150,4 @@ const PostUploadScreen = () => {
   );
 };
 
-export default PostUploadScreen;
+export default CameraScreen;

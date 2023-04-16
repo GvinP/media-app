@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import PostUploadScreen from '../screens/PostUploadScreen/PostUploadScreen';
+import UploadStackNavigator from './UploadStackNavigator';
 import colors from '../theme/colors';
 import HomeStackNavigator from './HomeStackNavigator';
 import ProfileStackNavigator from './ProfileStackNavigator';
@@ -41,7 +41,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Upload"
-        component={PostUploadScreen}
+        component={UploadStackNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({color, size}) => (
@@ -54,7 +54,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Notifications"
-        component={PostUploadScreen}
+        component={UploadStackNavigator}
         options={{
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="heart-outline" {...{color, size}} />

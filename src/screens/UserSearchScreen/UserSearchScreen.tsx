@@ -29,6 +29,7 @@ const UserSearchScreen = () => {
   return (
     <FlatList
       data={users}
+      //@ts-ignore
       renderItem={({item}) => item && <UserListItem user={item} />}
       onRefresh={refetch}
       refreshing={loading}
