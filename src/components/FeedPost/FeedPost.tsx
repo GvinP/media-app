@@ -1,5 +1,4 @@
-import {Alert, Image, Text, View} from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import {Image, Text, View} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -15,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {FeedNavigationProp} from '../../types/navigation';
 import {DEFAULT_USER_IMAGE} from '../../config';
 import Menu from './Menu';
+import useLikeService from '../../services/LikeService';
 
 interface FeedPostProps {
   post: Post;
@@ -23,11 +23,13 @@ interface FeedPostProps {
 
 const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
   const navigation = useNavigation<FeedNavigationProp>();
+  const postLikes = post.Likes?.items.filter(like => !like?._deleted) || [];
+  const {userLike, toddleLike} = useLikeService(post);
+
   const toggleDescriptionExpanded = () =>
     setIsDescriptionExpanded(prev => !prev);
-  const toddleLike = () => setIsLiked(prev => !prev);
+
   let content = null;
   if (post.image) {
     content = (
@@ -49,6 +51,8 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   const navigateToComments = () =>
     //@ts-ignore
     navigation.navigate('Comments', {postId: post.id});
+  const navigateToLikes = () =>
+    navigation.navigate('PostLikes', {postId: post.id});
   return (
     <View style={styles.post}>
       <View style={styles.header}>
@@ -65,10 +69,10 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
           <AntDesign
-            name={isLiked ? 'heart' : 'hearto'}
+            name={userLike ? 'heart' : 'hearto'}
             size={24}
             style={styles.icon}
-            color={isLiked ? colors.accent : colors.black}
+            color={userLike ? colors.accent : colors.black}
             onPress={toddleLike}
           />
           <Ionicons
@@ -90,10 +94,20 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
             color={colors.black}
           />
         </View>
-        <Text style={styles.text}>
-          Liked by <Text style={styles.bold}>username</Text> and{' '}
-          <Text style={styles.bold}>{post.nofLikes} others</Text>
-        </Text>
+        {postLikes.length === 0 ? (
+          <Text>Be the first to like the post</Text>
+        ) : (
+          <Text style={styles.text} onPress={navigateToLikes}>
+            Liked by{' '}
+            <Text style={styles.bold}>{postLikes[0]?.User?.username}</Text>
+            {postLikes.length > 1 && (
+              <>
+                {' '}
+                and <Text style={styles.bold}>{post.nofLikes - 1} others</Text>
+              </>
+            )}
+          </Text>
+        )}
         <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 0 : 3}>
           <Text style={styles.bold}>{post.User?.username}</Text>{' '}
           {post.description}

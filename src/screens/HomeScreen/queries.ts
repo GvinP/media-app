@@ -18,30 +18,30 @@ export const listPosts = gql`
         userID
         User {
           id
-          email
           name
           username
           image
-          bio
-          website
-          nofPosts
-          nofFollowers
-          nofFollowings
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         Comments {
           items {
             id
             comment
+            User {
+              id
+              name
+              username
+            }
           }
-          nextToken
-          startedAt
         }
         Likes {
+          items {
+            id
+            _deleted
+            User {
+              id
+              username
+            }
+          }
           nextToken
           startedAt
         }

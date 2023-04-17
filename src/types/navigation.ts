@@ -1,7 +1,6 @@
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import {Post} from '../API';
 
 export type RootNavigatorParamList = {
   Auth: undefined;
@@ -32,6 +31,7 @@ export type HomeStackNavigatorParamList = {
   Feed: undefined;
   UserProfile: {userId: string};
   UpdatePost: {postId: string};
+  PostLikes: {postId: string};
 };
 
 export type UploadStackNavigatorParamList = {
@@ -56,6 +56,11 @@ export type UploadRouteProp = RouteProp<
 export type UpdateRouteProp = RouteProp<
   HomeStackNavigatorParamList,
   'UpdatePost'
+>;
+
+export type PostLikesRouteProp = RouteProp<
+  HomeStackNavigatorParamList,
+  'PostLikes'
 >;
 
 export type UserProfileNavigationProp = NativeStackNavigationProp<
