@@ -6,18 +6,29 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {useState} from 'react';
+import {FC, useState} from 'react';
 import colors from '../../theme/colors';
 import fonts from '../../theme/fonts';
+import {DEFAULT_USER_IMAGE} from '../../config';
+import useCommentService from '../../services/CommentService/CommentService';
 
-const Input = () => {
+interface IInput {
+  postId: string;
+}
+
+const Input: FC<IInput> = ({postId}) => {
   const [newComment, setNewComment] = useState('');
-  const onPost = () => {};
+  const {onCreateComment, incrementNofComments} = useCommentService(postId);
+
+  const onPost = async () => {
+    onCreateComment(newComment);
+    setNewComment('');
+  };
   return (
     <View style={styles.container}>
       <Image
         source={{
-          uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg',
+          uri: DEFAULT_USER_IMAGE,
         }}
         style={styles.image}
       />

@@ -2,7 +2,7 @@ import {FC, useState} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/colors';
-import {Comment as IComment } from '../../API';
+import {Comment as IComment} from '../../API';
 import styles from './styles';
 import {DEFAULT_USER_IMAGE} from '../../config';
 

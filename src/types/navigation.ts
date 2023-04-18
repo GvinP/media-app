@@ -9,6 +9,8 @@ export type RootNavigatorParamList = {
   EditProfile: undefined;
 };
 
+export type CommentsRouteProp = RouteProp<RootNavigatorParamList, 'Comments'>;
+
 export type BottomTabNavigatorParamList = {
   HomeStack: undefined;
   Search: undefined;

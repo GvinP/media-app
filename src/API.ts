@@ -2173,7 +2173,7 @@ export type CommentsByUserIDQuery = {
   } | null,
 };
 
-export type CommentsByPostIDQueryVariables = {
+export type CommentsByPostQueryVariables = {
   postID: string,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelCommentFilterInput | null,
@@ -2181,8 +2181,8 @@ export type CommentsByPostIDQueryVariables = {
   nextToken?: string | null,
 };
 
-export type CommentsByPostIDQuery = {
-  commentsByPostID?:  {
+export type CommentsByPostQuery = {
+  commentsByPost?:  {
     __typename: "ModelCommentConnection",
     items:  Array< {
       __typename: "Comment",
