@@ -9,16 +9,22 @@ import {
 import React, {useCallback, useState} from 'react';
 import FeedPost from '../../components/FeedPost';
 import {useQuery} from '@apollo/client';
-import {listPosts} from './queries';
-import {ListPostsQuery, ListPostsQueryVariables} from '../../API';
+import {postsByDate} from './queries';
+import {
+  ModelSortDirection,
+  PostsByDateQuery,
+  PostsByDateQueryVariables,
+} from '../../API';
 
 const HomeScreen = () => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
   const {data, loading, error, refetch} = useQuery<
-    ListPostsQuery,
-    ListPostsQueryVariables
-  >(listPosts);
-  const posts = data?.listPosts?.items.filter(post => !post?._deleted);
+    PostsByDateQuery,
+    PostsByDateQueryVariables
+  >(postsByDate, {
+    variables: {type: 'POST', sortDirection: ModelSortDirection.DESC},
+  });
+  const posts = data?.postsByDate?.items.filter(post => !post?._deleted);
   const viewabilityConfig: ViewabilityConfig = {
     itemVisiblePercentThreshold: 51,
   };

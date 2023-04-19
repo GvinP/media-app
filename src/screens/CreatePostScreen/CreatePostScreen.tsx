@@ -26,6 +26,7 @@ const CreatePostScreen = () => {
       const response = await doCreatePost({
         variables: {
           input: {
+            type: 'POST',
             userID: userId,
             description,
             nofComments: 0,

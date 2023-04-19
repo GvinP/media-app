@@ -15,6 +15,7 @@ import {FeedNavigationProp} from '../../types/navigation';
 import {DEFAULT_USER_IMAGE} from '../../config';
 import Menu from './Menu';
 import useLikeService from '../../services/LikeService';
+import dayjs from 'dayjs';
 
 interface FeedPostProps {
   post: Post;
@@ -121,7 +122,7 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
         {post.Comments?.items.map(
           comment => comment && <Comment {...{comment}} key={comment?.id} />,
         )}
-        <Text>{post.createdAt}</Text>
+        <Text>{dayjs(post.createdAt).fromNow()}</Text>
       </View>
     </View>
   );

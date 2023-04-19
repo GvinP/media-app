@@ -5,7 +5,11 @@ import Input from './Input';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useQuery} from '@apollo/client';
 import {commentsByPost} from './queries';
-import {CommentsByPostQuery, CommentsByPostQueryVariables} from '../../API';
+import {
+  CommentsByPostQuery,
+  CommentsByPostQueryVariables,
+  ModelSortDirection,
+} from '../../API';
 import {useRoute} from '@react-navigation/native';
 import {CommentsRouteProp} from '../../types/navigation';
 
@@ -16,7 +20,9 @@ const CommentsScreen = () => {
   const {data, loading, error} = useQuery<
     CommentsByPostQuery,
     CommentsByPostQueryVariables
-  >(commentsByPost, {variables: {postID: postId}});
+  >(commentsByPost, {
+    variables: {postID: postId, sortDirection: ModelSortDirection.DESC},
+  });
 
   const comments = data?.commentsByPost?.items.filter(
     comment => !comment?._deleted,
@@ -42,6 +48,7 @@ const CommentsScreen = () => {
         }
         keyExtractor={item => `${item?.id}`}
         showsVerticalScrollIndicator={false}
+        inverted
         style={{padding: 10}}
       />
       <Input {...{postId}} />

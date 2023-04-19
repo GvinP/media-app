@@ -24,6 +24,7 @@
     "aws-appsync-auth-link": "^3.0.7",
     "aws-appsync-subscription-link": "^3.1.2",
     "core-js": "^3.30.0",
+    "dayjs": "^1.11.7",
     "expo": "^48.0.0",
     "expo-camera": "~13.2.1",
     "graphql": "^14.7.0",

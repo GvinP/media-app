@@ -5,6 +5,7 @@ import colors from '../../theme/colors';
 import {Comment as IComment} from '../../API';
 import styles from './styles';
 import {DEFAULT_USER_IMAGE} from '../../config';
+import dayjs from 'dayjs'
 
 interface CommentProps {
   comment: IComment;
@@ -29,7 +30,9 @@ const Comment: FC<CommentProps> = ({comment, includeDetails = false}) => {
         </Text>
         {includeDetails && (
           <View style={styles.footer}>
-            <Text style={styles.footerText}>2d</Text>
+            <Text style={styles.footerText}>
+              {dayjs(comment.createdAt).fromNow()}
+            </Text>
             <Text style={styles.footerText}>5 likes</Text>
             <Text style={styles.footerText}>Reply</Text>
           </View>
