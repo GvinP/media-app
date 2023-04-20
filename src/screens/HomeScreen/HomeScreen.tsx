@@ -18,13 +18,15 @@ import {
 
 const HomeScreen = () => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
-  const {data, loading, error, refetch} = useQuery<
+  const {data, loading, error, refetch, fetchMore} = useQuery<
     PostsByDateQuery,
     PostsByDateQueryVariables
   >(postsByDate, {
-    variables: {type: 'POST', sortDirection: ModelSortDirection.DESC},
+    variables: {type: 'POST', sortDirection: ModelSortDirection.DESC, limit: 2},
   });
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
   const posts = data?.postsByDate?.items.filter(post => !post?._deleted);
+  const nextToken = data?.postsByDate?.nextToken;
   const viewabilityConfig: ViewabilityConfig = {
     itemVisiblePercentThreshold: 51,
   };
@@ -36,6 +38,14 @@ const HomeScreen = () => {
     },
     [],
   );
+  const loadMore = async () => {
+    if (!nextToken || isFetchingMore) {
+      return;
+    }
+    setIsFetchingMore(true);
+    await fetchMore({variables: {nextToken}});
+    setIsFetchingMore(false);
+  };
   if (loading) {
     return <ActivityIndicator />;
   }
@@ -51,6 +61,7 @@ const HomeScreen = () => {
     <FlatList
       data={posts}
       renderItem={({item}) =>
+        //@ts-ignore
         item && <FeedPost post={item} isVisible={activePostId === item.id} />
       }
       keyExtractor={item => `${item?.id}`}
@@ -59,6 +70,7 @@ const HomeScreen = () => {
       onViewableItemsChanged={onViewableItemsChanged}
       onRefresh={refetch}
       refreshing={loading}
+      onEndReached={loadMore}
     />
   );
 };

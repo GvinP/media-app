@@ -1,5 +1,5 @@
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Comment from '../../components/Comment';
 import Input from './Input';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -17,16 +17,32 @@ const CommentsScreen = () => {
   const insets = useSafeAreaInsets();
   const route = useRoute<CommentsRouteProp>();
   const {postId} = route.params;
-  const {data, loading, error} = useQuery<
+  const {data, loading, error, fetchMore} = useQuery<
     CommentsByPostQuery,
     CommentsByPostQueryVariables
   >(commentsByPost, {
-    variables: {postID: postId, sortDirection: ModelSortDirection.DESC},
+    variables: {
+      postID: postId,
+      sortDirection: ModelSortDirection.DESC,
+      limit: 20,
+    },
   });
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
 
   const comments = data?.commentsByPost?.items.filter(
     comment => !comment?._deleted,
   );
+
+  const nextToken = data?.commentsByPost?.nextToken;
+
+  const loadMore = async () => {
+    if (!nextToken || isFetchingMore) {
+      return;
+    }
+    setIsFetchingMore(true);
+    await fetchMore({variables: {nextToken}});
+    setIsFetchingMore(false);
+  };
 
   if (loading) {
     return <ActivityIndicator />;
@@ -50,6 +66,7 @@ const CommentsScreen = () => {
         showsVerticalScrollIndicator={false}
         inverted
         style={{padding: 10}}
+        onEndReached={loadMore}
       />
       <Input {...{postId}} />
     </View>
