@@ -23,7 +23,7 @@
         "memberberries49750360": {},
         "memberberriesPostConfirmation": {
           "deploymentBucketName": "amplify-memberberries-staging-72425-deployment",
-          "s3Key": "amplify-builds/memberberriesPostConfirmation-33344d79303544766949-build.zip"
+          "s3Key": "amplify-builds/memberberriesPostConfirmation-4334664f33593144674c-build.zip"
         }
       },
       "api": {

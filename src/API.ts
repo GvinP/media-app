@@ -69,12 +69,13 @@ export type Like = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+  owner?: string | null,
 };
 
 export type User = {
   __typename: "User",
   id: string,
-  email: string,
+  email?: string | null,
   name: string,
   username?: string | null,
   image?: string | null,
@@ -91,6 +92,7 @@ export type User = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+  owner?: string | null,
 };
 
 export type ModelPostConnection = {
@@ -119,6 +121,7 @@ export type Post = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+  owner?: string | null,
 };
 
 export type ModelCommentConnection = {
@@ -141,6 +144,7 @@ export type Comment = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+  owner?: string | null,
 };
 
 export type ModelLikeConnection = {
@@ -273,7 +277,7 @@ export type DeletePostInput = {
 
 export type CreateUserInput = {
   id?: string | null,
-  email: string,
+  email?: string | null,
   name: string,
   username?: string | null,
   image?: string | null,
@@ -508,7 +512,7 @@ export type CreateLikeMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -537,6 +541,7 @@ export type CreateLikeMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -553,7 +558,7 @@ export type CreateLikeMutation = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -567,6 +572,7 @@ export type CreateLikeMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -582,12 +588,14 @@ export type CreateLikeMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -605,7 +613,7 @@ export type UpdateLikeMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -634,6 +642,7 @@ export type UpdateLikeMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -650,7 +659,7 @@ export type UpdateLikeMutation = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -664,6 +673,7 @@ export type UpdateLikeMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -679,12 +689,14 @@ export type UpdateLikeMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -702,7 +714,7 @@ export type DeleteLikeMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -731,6 +743,7 @@ export type DeleteLikeMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -747,7 +760,7 @@ export type DeleteLikeMutation = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -761,6 +774,7 @@ export type DeleteLikeMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -776,12 +790,14 @@ export type DeleteLikeMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -801,7 +817,7 @@ export type CreateCommentMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -830,6 +846,7 @@ export type CreateCommentMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -846,7 +863,7 @@ export type CreateCommentMutation = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -860,6 +877,7 @@ export type CreateCommentMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -875,11 +893,13 @@ export type CreateCommentMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -899,7 +919,7 @@ export type UpdateCommentMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -928,6 +948,7 @@ export type UpdateCommentMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -944,7 +965,7 @@ export type UpdateCommentMutation = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -958,6 +979,7 @@ export type UpdateCommentMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -973,11 +995,13 @@ export type UpdateCommentMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -997,7 +1021,7 @@ export type DeleteCommentMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -1026,6 +1050,7 @@ export type DeleteCommentMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -1042,7 +1067,7 @@ export type DeleteCommentMutation = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -1056,6 +1081,7 @@ export type DeleteCommentMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -1071,11 +1097,13 @@ export type DeleteCommentMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1100,7 +1128,7 @@ export type CreatePostMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -1129,6 +1157,7 @@ export type CreatePostMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Comments?:  {
       __typename: "ModelCommentConnection",
@@ -1143,6 +1172,7 @@ export type CreatePostMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1159,6 +1189,7 @@ export type CreatePostMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1167,6 +1198,7 @@ export type CreatePostMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1191,7 +1223,7 @@ export type UpdatePostMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -1220,6 +1252,7 @@ export type UpdatePostMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Comments?:  {
       __typename: "ModelCommentConnection",
@@ -1234,6 +1267,7 @@ export type UpdatePostMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1250,6 +1284,7 @@ export type UpdatePostMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1258,6 +1293,7 @@ export type UpdatePostMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1282,7 +1318,7 @@ export type DeletePostMutation = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -1311,6 +1347,7 @@ export type DeletePostMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Comments?:  {
       __typename: "ModelCommentConnection",
@@ -1325,6 +1362,7 @@ export type DeletePostMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1341,6 +1379,7 @@ export type DeletePostMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1349,6 +1388,7 @@ export type DeletePostMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1361,7 +1401,7 @@ export type CreateUserMutation = {
   createUser?:  {
     __typename: "User",
     id: string,
-    email: string,
+    email?: string | null,
     name: string,
     username?: string | null,
     image?: string | null,
@@ -1388,6 +1428,7 @@ export type CreateUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1405,6 +1446,7 @@ export type CreateUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1421,6 +1463,7 @@ export type CreateUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1430,6 +1473,7 @@ export type CreateUserMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1442,7 +1486,7 @@ export type UpdateUserMutation = {
   updateUser?:  {
     __typename: "User",
     id: string,
-    email: string,
+    email?: string | null,
     name: string,
     username?: string | null,
     image?: string | null,
@@ -1469,6 +1513,7 @@ export type UpdateUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1486,6 +1531,7 @@ export type UpdateUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1502,6 +1548,7 @@ export type UpdateUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1511,6 +1558,7 @@ export type UpdateUserMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1523,7 +1571,7 @@ export type DeleteUserMutation = {
   deleteUser?:  {
     __typename: "User",
     id: string,
-    email: string,
+    email?: string | null,
     name: string,
     username?: string | null,
     image?: string | null,
@@ -1550,6 +1598,7 @@ export type DeleteUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1567,6 +1616,7 @@ export type DeleteUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1583,6 +1633,7 @@ export type DeleteUserMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1592,6 +1643,7 @@ export type DeleteUserMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1608,7 +1660,7 @@ export type GetLikeQuery = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -1637,6 +1689,7 @@ export type GetLikeQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -1653,7 +1706,7 @@ export type GetLikeQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -1667,6 +1720,7 @@ export type GetLikeQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -1682,12 +1736,14 @@ export type GetLikeQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1708,7 +1764,7 @@ export type ListLikesQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -1722,6 +1778,7 @@ export type ListLikesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1739,12 +1796,14 @@ export type ListLikesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -1769,7 +1828,7 @@ export type SyncLikesQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -1783,6 +1842,7 @@ export type SyncLikesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1800,12 +1860,14 @@ export type SyncLikesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -1831,7 +1893,7 @@ export type LikesByUserIDQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -1845,6 +1907,7 @@ export type LikesByUserIDQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1862,12 +1925,14 @@ export type LikesByUserIDQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -1894,7 +1959,7 @@ export type LikesForPostByUserQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -1908,6 +1973,7 @@ export type LikesForPostByUserQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1925,12 +1991,14 @@ export type LikesForPostByUserQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -1952,7 +2020,7 @@ export type GetCommentQuery = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -1981,6 +2049,7 @@ export type GetCommentQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -1997,7 +2066,7 @@ export type GetCommentQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2011,6 +2080,7 @@ export type GetCommentQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -2026,11 +2096,13 @@ export type GetCommentQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -2053,7 +2125,7 @@ export type ListCommentsQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2067,6 +2139,7 @@ export type ListCommentsQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -2084,11 +2157,13 @@ export type ListCommentsQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2115,7 +2190,7 @@ export type SyncCommentsQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2129,6 +2204,7 @@ export type SyncCommentsQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -2146,11 +2222,13 @@ export type SyncCommentsQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2178,7 +2256,7 @@ export type CommentsByUserIDQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2192,6 +2270,7 @@ export type CommentsByUserIDQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -2209,11 +2288,13 @@ export type CommentsByUserIDQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2242,7 +2323,7 @@ export type CommentsByPostQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2256,6 +2337,7 @@ export type CommentsByPostQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -2273,11 +2355,13 @@ export type CommentsByPostQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2304,7 +2388,7 @@ export type GetPostQuery = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -2333,6 +2417,7 @@ export type GetPostQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Comments?:  {
       __typename: "ModelCommentConnection",
@@ -2347,6 +2432,7 @@ export type GetPostQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2363,6 +2449,7 @@ export type GetPostQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2371,6 +2458,7 @@ export type GetPostQuery = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -2398,7 +2486,7 @@ export type ListPostsQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2412,6 +2500,7 @@ export type ListPostsQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -2427,6 +2516,7 @@ export type ListPostsQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2458,7 +2548,7 @@ export type SyncPostsQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2472,6 +2562,7 @@ export type SyncPostsQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -2487,6 +2578,7 @@ export type SyncPostsQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2520,7 +2612,7 @@ export type PostsByDateQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2534,6 +2626,7 @@ export type PostsByDateQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -2549,6 +2642,7 @@ export type PostsByDateQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2581,7 +2675,7 @@ export type PostsByUserIDQuery = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2595,6 +2689,7 @@ export type PostsByUserIDQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -2610,6 +2705,7 @@ export type PostsByUserIDQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2624,7 +2720,7 @@ export type GetUserQuery = {
   getUser?:  {
     __typename: "User",
     id: string,
-    email: string,
+    email?: string | null,
     name: string,
     username?: string | null,
     image?: string | null,
@@ -2651,6 +2747,7 @@ export type GetUserQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2668,6 +2765,7 @@ export type GetUserQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2684,6 +2782,7 @@ export type GetUserQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2693,6 +2792,7 @@ export type GetUserQuery = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -2708,7 +2808,7 @@ export type ListUsersQuery = {
     items:  Array< {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -2737,6 +2837,7 @@ export type ListUsersQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2756,7 +2857,7 @@ export type SyncUsersQuery = {
     items:  Array< {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -2785,6 +2886,7 @@ export type SyncUsersQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2805,7 +2907,7 @@ export type UsersByUsernameQuery = {
     items:  Array< {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -2834,6 +2936,7 @@ export type UsersByUsernameQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2855,7 +2958,7 @@ export type OnCreateCommentByPostIdSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -2884,6 +2987,7 @@ export type OnCreateCommentByPostIdSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2900,7 +3004,7 @@ export type OnCreateCommentByPostIdSubscription = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -2914,6 +3018,7 @@ export type OnCreateCommentByPostIdSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -2929,16 +3034,19 @@ export type OnCreateCommentByPostIdSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateLikeSubscriptionVariables = {
   filter?: ModelSubscriptionLikeFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateLikeSubscription = {
@@ -2950,7 +3058,7 @@ export type OnCreateLikeSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -2979,6 +3087,7 @@ export type OnCreateLikeSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2995,7 +3104,7 @@ export type OnCreateLikeSubscription = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -3009,6 +3118,7 @@ export type OnCreateLikeSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -3024,17 +3134,20 @@ export type OnCreateLikeSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateLikeSubscriptionVariables = {
   filter?: ModelSubscriptionLikeFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateLikeSubscription = {
@@ -3046,7 +3159,7 @@ export type OnUpdateLikeSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3075,6 +3188,7 @@ export type OnUpdateLikeSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -3091,7 +3205,7 @@ export type OnUpdateLikeSubscription = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -3105,6 +3219,7 @@ export type OnUpdateLikeSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -3120,17 +3235,20 @@ export type OnUpdateLikeSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteLikeSubscriptionVariables = {
   filter?: ModelSubscriptionLikeFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteLikeSubscription = {
@@ -3142,7 +3260,7 @@ export type OnDeleteLikeSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3171,6 +3289,7 @@ export type OnDeleteLikeSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -3187,7 +3306,7 @@ export type OnDeleteLikeSubscription = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -3201,6 +3320,7 @@ export type OnDeleteLikeSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -3216,17 +3336,20 @@ export type OnDeleteLikeSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateCommentSubscriptionVariables = {
   filter?: ModelSubscriptionCommentFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateCommentSubscription = {
@@ -3240,7 +3363,7 @@ export type OnCreateCommentSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3269,6 +3392,7 @@ export type OnCreateCommentSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -3285,7 +3409,7 @@ export type OnCreateCommentSubscription = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -3299,6 +3423,7 @@ export type OnCreateCommentSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -3314,16 +3439,19 @@ export type OnCreateCommentSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateCommentSubscriptionVariables = {
   filter?: ModelSubscriptionCommentFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateCommentSubscription = {
@@ -3337,7 +3465,7 @@ export type OnUpdateCommentSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3366,6 +3494,7 @@ export type OnUpdateCommentSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -3382,7 +3511,7 @@ export type OnUpdateCommentSubscription = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -3396,6 +3525,7 @@ export type OnUpdateCommentSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -3411,16 +3541,19 @@ export type OnUpdateCommentSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteCommentSubscriptionVariables = {
   filter?: ModelSubscriptionCommentFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteCommentSubscription = {
@@ -3434,7 +3567,7 @@ export type OnDeleteCommentSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3463,6 +3596,7 @@ export type OnDeleteCommentSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -3479,7 +3613,7 @@ export type OnDeleteCommentSubscription = {
       User?:  {
         __typename: "User",
         id: string,
-        email: string,
+        email?: string | null,
         name: string,
         username?: string | null,
         image?: string | null,
@@ -3493,6 +3627,7 @@ export type OnDeleteCommentSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       Comments?:  {
         __typename: "ModelCommentConnection",
@@ -3508,16 +3643,19 @@ export type OnDeleteCommentSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreatePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreatePostSubscription = {
@@ -3536,7 +3674,7 @@ export type OnCreatePostSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3565,6 +3703,7 @@ export type OnCreatePostSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Comments?:  {
       __typename: "ModelCommentConnection",
@@ -3579,6 +3718,7 @@ export type OnCreatePostSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3595,6 +3735,7 @@ export type OnCreatePostSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3603,11 +3744,13 @@ export type OnCreatePostSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdatePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdatePostSubscription = {
@@ -3626,7 +3769,7 @@ export type OnUpdatePostSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3655,6 +3798,7 @@ export type OnUpdatePostSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Comments?:  {
       __typename: "ModelCommentConnection",
@@ -3669,6 +3813,7 @@ export type OnUpdatePostSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3685,6 +3830,7 @@ export type OnUpdatePostSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3693,11 +3839,13 @@ export type OnUpdatePostSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeletePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeletePostSubscription = {
@@ -3716,7 +3864,7 @@ export type OnDeletePostSubscription = {
     User?:  {
       __typename: "User",
       id: string,
-      email: string,
+      email?: string | null,
       name: string,
       username?: string | null,
       image?: string | null,
@@ -3745,6 +3893,7 @@ export type OnDeletePostSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     Comments?:  {
       __typename: "ModelCommentConnection",
@@ -3759,6 +3908,7 @@ export type OnDeletePostSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3775,6 +3925,7 @@ export type OnDeletePostSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3783,18 +3934,20 @@ export type OnDeletePostSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateUserSubscription = {
   onCreateUser?:  {
     __typename: "User",
     id: string,
-    email: string,
+    email?: string | null,
     name: string,
     username?: string | null,
     image?: string | null,
@@ -3821,6 +3974,7 @@ export type OnCreateUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3838,6 +3992,7 @@ export type OnCreateUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3854,6 +4009,7 @@ export type OnCreateUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3863,18 +4019,20 @@ export type OnCreateUserSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateUserSubscription = {
   onUpdateUser?:  {
     __typename: "User",
     id: string,
-    email: string,
+    email?: string | null,
     name: string,
     username?: string | null,
     image?: string | null,
@@ -3901,6 +4059,7 @@ export type OnUpdateUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3918,6 +4077,7 @@ export type OnUpdateUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3934,6 +4094,7 @@ export type OnUpdateUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3943,18 +4104,20 @@ export type OnUpdateUserSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteUserSubscription = {
   onDeleteUser?:  {
     __typename: "User",
     id: string,
-    email: string,
+    email?: string | null,
     name: string,
     username?: string | null,
     image?: string | null,
@@ -3981,6 +4144,7 @@ export type OnDeleteUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3998,6 +4162,7 @@ export type OnDeleteUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -4014,6 +4179,7 @@ export type OnDeleteUserSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -4023,5 +4189,6 @@ export type OnDeleteUserSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
