@@ -12,6 +12,8 @@ import {
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {UploadNavigationProp} from '../../types/navigation';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const flashModes = [
   FlashMode.off,
@@ -28,6 +30,7 @@ const flashModeToIcon = {
 };
 
 const CameraScreen = () => {
+  const insets = useSafeAreaInsets();
   const [hasPermissions, setHasPermissions] = useState<boolean | null>(null);
   const [cameraType, setCameraType] = useState<CameraType>(CameraType.back);
   const [flash, setFlash] = useState(FlashMode.off);
@@ -68,7 +71,9 @@ const CameraScreen = () => {
       skipProcessing: true,
     };
     const result = await camera.current.takePictureAsync(options);
-    console.log({result});
+    navigation.navigate('CreatePost', {
+      image: result.uri,
+    });
   };
 
   const startRecording = async () => {
@@ -92,6 +97,24 @@ const CameraScreen = () => {
       setIsRecording(false);
     }
   };
+  const openImageGallery = () => {
+    launchImageLibrary(
+      {mediaType: 'photo', selectionLimit: 3},
+      ({didCancel, errorCode, assets}) => {
+        if (!didCancel && !errorCode && assets && assets.length > 0) {
+          if (assets.length === 1) {
+            navigation.navigate('CreatePost', {
+              image: assets[0].uri,
+            });
+          } else {
+            navigation.navigate('CreatePost', {
+              images: assets.map(asset => (asset.uri ? asset.uri : '')),
+            });
+          }
+        }
+      },
+    );
+  };
 
   if (hasPermissions === null) {
     return <Text>Loading...</Text>;
@@ -109,7 +132,7 @@ const CameraScreen = () => {
         flashMode={flash}
         onCameraReady={() => setIsCameraReady(true)}
       />
-      <View style={[styles.buttonContainer, {top: 10}]}>
+      <View style={[styles.buttonContainer, {top: 10 + insets.top}]}>
         <MaterialIcons name="close" size={30} color="#fff" />
         <Pressable onPress={flipFlash}>
           <MaterialIcons name={flashModeToIcon[flash]} size={30} color="#fff" />
@@ -117,8 +140,10 @@ const CameraScreen = () => {
         <MaterialIcons name="settings" size={30} color="#fff" />
       </View>
       <View style={[styles.buttonContainer, {bottom: 10}]}>
-        <MaterialIcons name="photo-library" size={30} color="#fff" />
-        {/* {isCameraReady && (
+        <Pressable onPress={openImageGallery}>
+          <MaterialIcons name="photo-library" size={30} color="#fff" />
+        </Pressable>
+        {isCameraReady && (
           <Pressable
             onPress={takePicture}
             onLongPress={startRecording}
@@ -130,18 +155,7 @@ const CameraScreen = () => {
               ]}
             />
           </Pressable>
-        )} */}
-        <Pressable
-          onPress={() =>
-            navigation.navigate('CreatePost', {
-              images: [
-                'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
-                'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg',
-              ],
-            })
-          }>
-          <View style={[styles.circle, {backgroundColor: '#fff'}]} />
-        </Pressable>
+        )}
         <Pressable onPress={flipCamera}>
           <MaterialIcons name="flip-camera-ios" size={30} color="#fff" />
         </Pressable>

@@ -7,15 +7,13 @@ import styles from './styles';
 import {FC, useState} from 'react';
 import Comment from '../Comment';
 import {Post} from '../../API';
-import DoublePressable from '../DoublePressable/intex';
-import Carusel from '../Carousel';
-import VideoPlayer from '../VideoPlayer';
 import {useNavigation} from '@react-navigation/native';
 import {FeedNavigationProp} from '../../types/navigation';
 import {DEFAULT_USER_IMAGE} from '../../config';
 import Menu from './Menu';
 import useLikeService from '../../services/LikeService';
 import dayjs from 'dayjs';
+import Content from './Content';
 
 interface FeedPostProps {
   post: Post;
@@ -26,27 +24,11 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const navigation = useNavigation<FeedNavigationProp>();
   const postLikes = post.Likes?.items.filter(like => !like?._deleted) || [];
-  const {userLike, toddleLike} = useLikeService(post);
+  const {userLike, toggleLike} = useLikeService(post);
 
   const toggleDescriptionExpanded = () =>
     setIsDescriptionExpanded(prev => !prev);
 
-  let content = null;
-  if (post.image) {
-    content = (
-      <DoublePressable onDoublePress={toddleLike}>
-        <Image source={{uri: post.image}} style={styles.image} />
-      </DoublePressable>
-    );
-  } else if (post.images) {
-    content = <Carusel images={post.images} onDoublePress={toddleLike} />;
-  } else if (post.video) {
-    content = (
-      <DoublePressable onDoublePress={toddleLike}>
-        <VideoPlayer uri={post.video} paused={!isVisible} />
-      </DoublePressable>
-    );
-  }
   const navigateToUser = () =>
     post.User && navigation.navigate('UserProfile', {userId: post.User?.id});
   const navigateToComments = () =>
@@ -66,7 +48,7 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
         </Text>
         <Menu post={post} />
       </View>
-      {content}
+      <Content post={post} isVisible={isVisible} toggleLike={toggleLike} />
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
           <AntDesign
@@ -74,7 +56,7 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
             size={24}
             style={styles.icon}
             color={userLike ? colors.accent : colors.black}
-            onPress={toddleLike}
+            onPress={toggleLike}
           />
           <Ionicons
             name="chatbubble-outline"

@@ -64,7 +64,7 @@ const useLikeService = (post: Post) => {
       incrementNofLikes(-1);
     }
   };
-  const toddleLike = () => {
+  const toggleLike = () => {
     if (userLike) {
       deleteLike();
     } else {
@@ -73,7 +73,7 @@ const useLikeService = (post: Post) => {
   };
   return {
     userLike,
-    toddleLike,
+    toggleLike,
   };
 };
 

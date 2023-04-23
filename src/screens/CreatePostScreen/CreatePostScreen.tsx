@@ -6,14 +6,22 @@ import {useState} from 'react';
 import Button from '../../components/Button/Button';
 import {useMutation} from '@apollo/client';
 import {createPost} from './queries';
-import {CreatePostMutation, CreatePostMutationVariables} from '../../API';
+import {
+  CreatePostInput,
+  CreatePostMutation,
+  CreatePostMutationVariables,
+} from '../../API';
 import {useAuthContext} from '../../contexts/AuthContext';
 import Carousel from '../../components/Carousel/Carousel';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
+import {Storage} from 'aws-amplify';
+import {v4} from 'uuid';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const CreatePostScreen = () => {
   const navigation = useNavigation<UploadNavigationProp>();
   const {userId} = useAuthContext();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const route = useRoute<UploadRouteProp>();
   const [description, setDescription] = useState('');
   const [doCreatePost] = useMutation<
@@ -22,40 +30,60 @@ const CreatePostScreen = () => {
   >(createPost);
   const {image, images, video} = route.params;
   const submit = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    const input: CreatePostInput = {
+      type: 'POST',
+      userID: userId,
+      description,
+      nofComments: 0,
+      nofLikes: 0,
+      image: undefined,
+      images: undefined,
+      video: undefined,
+    };
     try {
-      const response = await doCreatePost({
-        variables: {
-          input: {
-            type: 'POST',
-            userID: userId,
-            description,
-            nofComments: 0,
-            nofLikes: 0,
-            image,
-            images,
-            video,
-          },
-        },
-      });
-      console.log(response);
+      if (image) {
+        const imageKey = await uploadMedia(image);
+        input.image = imageKey;
+      }
+      await doCreatePost({variables: {input}});
       setDescription('');
+      setIsSubmitting(false);
       navigation.popToTop();
       //@ts-ignore
       navigation.navigate('Feed');
     } catch (error) {
+      setIsSubmitting(false);
       Alert.alert('Error uploading the post', (error as Error).message);
     }
   };
+
+  const uploadMedia = async (uri: string) => {
+    try {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      const uriParts = uri.split('.');
+      const extension = uriParts[uriParts.length - 1];
+      const s3Response = await Storage.put(`${v4()}.${extension}`, blob);
+      return s3Response.key;
+    } catch (error) {
+      Alert.alert('Error uploading the file', (error as Error).message);
+    }
+  };
+
   let content = null;
   if (image) {
-    content = <Image source={{uri: image}} style={styles.image} />;
+    content = (
+      <Image source={{uri: image}} style={styles.image} resizeMode="contain" />
+    );
   } else if (images) {
     content = <Carousel images={images} />;
   } else if (video) {
     content = <VideoPlayer uri={video} paused />;
   }
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView contentContainerStyle={styles.container}>
       <View style={styles.content}>{content}</View>
       <TextInput
         value={description}
@@ -66,9 +94,12 @@ const CreatePostScreen = () => {
         numberOfLines={5}
       />
       <View style={{flexDirection: 'row'}}>
-        <Button title="Submit" onPress={submit} />
+        <Button
+          title={isSubmitting ? 'Submitting...' : 'Submit'}
+          onPress={submit}
+        />
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
