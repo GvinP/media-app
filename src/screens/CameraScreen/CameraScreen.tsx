@@ -108,7 +108,7 @@ const CameraScreen = () => {
             });
           } else {
             navigation.navigate('CreatePost', {
-              images: assets.map(asset => (asset.uri ? asset.uri : '')),
+              images: assets.map(asset => String(asset.uri)),
             });
           }
         }

@@ -46,6 +46,11 @@ const CreatePostScreen = () => {
       if (image) {
         const imageKey = await uploadMedia(image);
         input.image = imageKey;
+      } else if (images) {
+        const imageKeys = await Promise.all(
+          images.map(img => uploadMedia(img)),
+        );
+        input.images = imageKeys.filter(key => key) as string[];
       }
       await doCreatePost({variables: {input}});
       setDescription('');

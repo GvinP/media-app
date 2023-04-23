@@ -15,6 +15,7 @@ interface IContent {
 
 const Content: FC<IContent> = ({post, isVisible, toggleLike}) => {
   const [imageUri, setImageUri] = useState<string | null>(null);
+  const [imagesUri, setImagesUri] = useState<string[] | null>(null);
   useEffect(() => {
     downloadImage();
   }, []);
@@ -22,6 +23,9 @@ const Content: FC<IContent> = ({post, isVisible, toggleLike}) => {
     if (post.image) {
       const uri = await Storage.get(post.image);
       setImageUri(uri);
+    } else if (post.images) {
+      const uris = await Promise.all(post.images.map(img => Storage.get(img)));
+      setImagesUri(uris);
     }
   };
   if (imageUri) {
@@ -30,8 +34,8 @@ const Content: FC<IContent> = ({post, isVisible, toggleLike}) => {
         <Image source={{uri: imageUri}} style={styles.image} />
       </DoublePressable>
     );
-  } else if (post.images) {
-    return <Carousel images={post.images} onDoublePress={toggleLike} />;
+  } else if (imagesUri) {
+    return <Carousel images={imagesUri} onDoublePress={toggleLike} />;
   } else if (post.video) {
     return (
       <DoublePressable onDoublePress={toggleLike}>
