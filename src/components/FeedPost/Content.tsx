@@ -16,6 +16,7 @@ interface IContent {
 const Content: FC<IContent> = ({post, isVisible, toggleLike}) => {
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [imagesUri, setImagesUri] = useState<string[] | null>(null);
+  const [videoUri, setVideoUri] = useState<string | null>(null);
   useEffect(() => {
     downloadImage();
   }, []);
@@ -26,6 +27,9 @@ const Content: FC<IContent> = ({post, isVisible, toggleLike}) => {
     } else if (post.images) {
       const uris = await Promise.all(post.images.map(img => Storage.get(img)));
       setImagesUri(uris);
+    } else if (post.video) {
+      const uri = await Storage.get(post.video);
+      setVideoUri(uri);
     }
   };
   if (imageUri) {

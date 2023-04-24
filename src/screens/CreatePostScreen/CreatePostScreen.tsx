@@ -1,4 +1,4 @@
-import {View, Image, TextInput, Alert} from 'react-native';
+import {View, Image, TextInput, Alert, Text} from 'react-native';
 import styles from './styles';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {UploadNavigationProp, UploadRouteProp} from '../../types/navigation';
@@ -24,6 +24,7 @@ const CreatePostScreen = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const route = useRoute<UploadRouteProp>();
   const [description, setDescription] = useState('');
+  const [progress, setProgress] = useState(0);
   const [doCreatePost] = useMutation<
     CreatePostMutation,
     CreatePostMutationVariables
@@ -51,6 +52,9 @@ const CreatePostScreen = () => {
           images.map(img => uploadMedia(img)),
         );
         input.images = imageKeys.filter(key => key) as string[];
+      } else if (video) {
+        const videoKey = await uploadMedia(video);
+        input.video = videoKey;
       }
       await doCreatePost({variables: {input}});
       setDescription('');
@@ -70,7 +74,11 @@ const CreatePostScreen = () => {
       const blob = await response.blob();
       const uriParts = uri.split('.');
       const extension = uriParts[uriParts.length - 1];
-      const s3Response = await Storage.put(`${v4()}.${extension}`, blob);
+      const s3Response = await Storage.put(`${v4()}.${extension}`, blob, {
+        progressCallback: ({loaded, total}) => {
+          setProgress(loaded / total);
+        },
+      });
       return s3Response.key;
     } catch (error) {
       Alert.alert('Error uploading the file', (error as Error).message);
@@ -103,6 +111,14 @@ const CreatePostScreen = () => {
           title={isSubmitting ? 'Submitting...' : 'Submit'}
           onPress={submit}
         />
+      </View>
+      <View style={styles.progressBar}>
+        {isSubmitting && (
+          <View style={styles.progressContainer}>
+            <View style={[styles.progress, {width: `${progress * 100}%`}]} />
+            <Text>Uploading {Math.floor(progress * 100)}%</Text>
+          </View>
+        )}
       </View>
     </KeyboardAwareScrollView>
   );
