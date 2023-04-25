@@ -40,10 +40,10 @@ const Content: FC<IContent> = ({post, isVisible, toggleLike}) => {
     );
   } else if (imagesUri) {
     return <Carousel images={imagesUri} onDoublePress={toggleLike} />;
-  } else if (post.video) {
+  } else if (videoUri) {
     return (
       <DoublePressable onDoublePress={toggleLike}>
-        <VideoPlayer uri={post.video} paused={!isVisible} />
+        <VideoPlayer uri={videoUri} paused={!isVisible} />
       </DoublePressable>
     );
   }

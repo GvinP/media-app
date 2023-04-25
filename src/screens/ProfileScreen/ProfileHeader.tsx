@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text} from 'react-native';
 import {FC} from 'react';
 import styles from './styles';
 import Button from '../../components/Button';
@@ -9,8 +9,8 @@ import {
   UserProfileRouteProp,
 } from '../../types/navigation';
 import {User} from '../../API';
-import {DEFAULT_USER_IMAGE} from '../../config';
 import {useAuthContext} from '../../contexts/AuthContext';
+import UserAvatar from '../../components/UserAvatar/UserAvatar';
 
 interface IProfileHeader {
   user: User;
@@ -25,10 +25,7 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Image
-          source={{uri: user?.image || DEFAULT_USER_IMAGE}}
-          style={styles.avatar}
-        />
+        <UserAvatar photoKey={user.image} style={styles.avatar} />
         <View style={styles.numberContainer}>
           <Text style={styles.numberText}>{user?.nofPosts}</Text>
           <Text>Posts</Text>

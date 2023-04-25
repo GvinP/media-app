@@ -1,4 +1,4 @@
-import {View, Text, Image, Alert} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import {useForm} from 'react-hook-form';
 import {launchImageLibrary} from 'react-native-image-picker';
 import styles from './styles';
@@ -16,11 +16,12 @@ import {
   UsersByUsernameQuery,
   UsersByUsernameQueryVariables,
 } from '../../API';
-import {DEFAULT_USER_IMAGE} from '../../config';
 import {useAuthContext} from '../../contexts/AuthContext';
 import {ActivityIndicator} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Auth} from 'aws-amplify';
+import {Auth, Storage} from 'aws-amplify';
+import {v4} from 'uuid';
+import UserAvatar from '../../components/UserAvatar/UserAvatar';
 
 const URL_REGEX =
   /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/i;
@@ -33,7 +34,7 @@ const EditProfileScreen = () => {
     {variables: {id: userId}},
   );
   const user = data?.getUser;
-  const [selectedPhoto, setSelectedPhoto] = useState(user?.image);
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const {control, handleSubmit, setValue} = useForm<EditableUser>();
   const [doUpdateUser, {loading: updateLoading, error: updateError}] =
     useMutation<UpdateUserMutation, UpdateUserMutationVariables>(updateUser);
@@ -53,9 +54,28 @@ const EditProfileScreen = () => {
     }
   }, [user]);
 
-  const onSubmit = (data: EditableUser) => {
+  const uploadMedia = async (uri: string) => {
+    try {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      const uriParts = uri.split('.');
+      const extension = uriParts[uriParts.length - 1];
+      const s3Response = await Storage.put(`${v4()}.${extension}`, blob);
+      return s3Response.key;
+    } catch (error) {
+      Alert.alert('Error uploading the photo', (error as Error).message);
+    }
+  };
+
+  const onSubmit = async (data: EditableUser) => {
+    let photoKey;
+    if (selectedPhoto) {
+      photoKey = await uploadMedia(selectedPhoto);
+    }
     doUpdateUser({
-      variables: {input: {id: userId, ...data, _version: user?._version}},
+      variables: {
+        input: {id: userId, ...data, image: photoKey, _version: user?._version},
+      },
     });
     if (navigation.canGoBack()) {
       navigation.goBack();
@@ -122,8 +142,9 @@ const EditProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{uri: selectedPhoto || user?.image || DEFAULT_USER_IMAGE}}
+      <UserAvatar
+        photoKey={user?.image}
+        photoUri={selectedPhoto}
         style={styles.avatar}
       />
       <Text onPress={onChangePhoto} style={styles.button}>

@@ -18,7 +18,7 @@ interface IInput {
 
 const Input: FC<IInput> = ({postId}) => {
   const [newComment, setNewComment] = useState('');
-  const {onCreateComment, incrementNofComments} = useCommentService(postId);
+  const {onCreateComment} = useCommentService(postId);
 
   const onPost = async () => {
     onCreateComment(newComment);

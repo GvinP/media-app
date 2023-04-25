@@ -1,11 +1,11 @@
 import {FC, useState} from 'react';
-import {View, Text, Image, Pressable} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/colors';
 import {Comment as IComment} from '../../API';
 import styles from './styles';
-import {DEFAULT_USER_IMAGE} from '../../config';
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import UserAvatar from '../UserAvatar/UserAvatar';
 
 interface CommentProps {
   comment: IComment;
@@ -18,10 +18,7 @@ const Comment: FC<CommentProps> = ({comment, includeDetails = false}) => {
   return (
     <View style={styles.comment}>
       {includeDetails && (
-        <Image
-          source={{uri: comment.User?.image || DEFAULT_USER_IMAGE}}
-          style={styles.avatar}
-        />
+        <UserAvatar photoKey={comment.User?.image} style={styles.avatar} />
       )}
       <View style={styles.content}>
         <Text style={styles.commentText}>

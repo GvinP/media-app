@@ -1,4 +1,4 @@
-import {Image, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -9,11 +9,11 @@ import Comment from '../Comment';
 import {Post} from '../../API';
 import {useNavigation} from '@react-navigation/native';
 import {FeedNavigationProp} from '../../types/navigation';
-import {DEFAULT_USER_IMAGE} from '../../config';
 import Menu from './Menu';
 import useLikeService from '../../services/LikeService';
 import dayjs from 'dayjs';
 import Content from './Content';
+import UserAvatar from '../UserAvatar/UserAvatar';
 
 interface FeedPostProps {
   post: Post;
@@ -39,10 +39,7 @@ const FeedPost: FC<FeedPostProps> = ({post, isVisible}) => {
   return (
     <View style={styles.post}>
       <View style={styles.header}>
-        <Image
-          source={{uri: post.User?.image || DEFAULT_USER_IMAGE}}
-          style={styles.avatar}
-        />
+        <UserAvatar photoKey={post.User?.image} style={styles.avatar} />
         <Text onPress={navigateToUser} style={styles.name}>
           {post.User?.username}
         </Text>

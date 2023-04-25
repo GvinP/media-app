@@ -10,7 +10,7 @@ const SearchTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={{tabBarStyle: {paddingTop: insets.top}}}>
       <Tab.Screen name="UserSearch" component={UserSearchScreen} />
-      <Tab.Screen name="CommentSearch" component={CommentsScreen} />
+      {/* <Tab.Screen name="CommentSearch" component={CommentsScreen} /> */}
     </Tab.Navigator>
   );
 };
