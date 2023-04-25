@@ -17,6 +17,7 @@ import {DeletePostMutation, DeletePostMutationVariables, Post} from '../../API';
 import {useAuthContext} from '../../contexts/AuthContext';
 import {useNavigation} from '@react-navigation/native';
 import {FeedNavigationProp} from '../../types/navigation';
+import {Storage} from 'aws-amplify';
 
 interface IMenuComponent {
   post: Post;
@@ -33,8 +34,16 @@ const MenuComponent: FC<IMenuComponent> = ({post}) => {
   const isMyPost = userId === post.User?.id;
   const onDeletePost = async () => {
     try {
-      const response = await doDeletePost();
-      console.log(response);
+      if (post.image) {
+        await Storage.remove(post.image);
+      }
+      if (post.images) {
+        await Promise.all(post.images.map(image => Storage.remove(image)));
+      }
+      if (post.video) {
+        await Storage.remove(post.video);
+      }
+      await doDeletePost();
     } catch (error) {
       Alert.alert('Error deliting the post', (error as Error).message);
     }
