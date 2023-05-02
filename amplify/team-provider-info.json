@@ -24,7 +24,40 @@
         "memberberriesPostConfirmation": {
           "deploymentBucketName": "amplify-memberberries-staging-72425-deployment",
           "s3Key": "amplify-builds/memberberriesPostConfirmation-4334664f33593144674c-build.zip"
-        }
+        },
+        "memberberries": {}
+      },
+      "api": {
+        "memberberries": {}
+      },
+      "storage": {
+        "storage": {}
+      }
+    }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-memberberries-dev-112112-authRole",
+      "UnauthRoleArn": "arn:aws:iam::578321136858:role/amplify-memberberries-dev-112112-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::578321136858:role/amplify-memberberries-dev-112112-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-memberberries-dev-112112-deployment",
+      "UnauthRoleName": "amplify-memberberries-dev-112112-unauthRole",
+      "StackName": "amplify-memberberries-dev-112112",
+      "StackId": "arn:aws:cloudformation:eu-west-1:578321136858:stack/amplify-memberberries-dev-112112/5c7abb00-e8c2-11ed-98ce-0a15d6abc7dd",
+      "AmplifyAppId": "d2sbpkee6gqzom",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-memberberries-dev-112112-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "memberberries": {}
+      },
+      "function": {
+        "memberberriesPostConfirmation": {
+          "deploymentBucketName": "amplify-memberberries-dev-112112-deployment",
+          "s3Key": "amplify-builds/memberberriesPostConfirmation-4334664f33593144674c-build.zip"
+        },
+        "memberberries": {}
       },
       "api": {
         "memberberries": {}

@@ -94,22 +94,6 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_memberberries_facebookAppId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "memberberries"
-        }
-      ]
-    },
-    "AMPLIFY_auth_memberberries_googleClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "memberberries"
-        }
-      ]
-    },
     "AMPLIFY_function_memberberriesPostConfirmation_deploymentBucketName": {
       "usedBy": [
         {
