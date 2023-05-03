@@ -9,6 +9,8 @@ export type AmplifyDependentResourcesAttributes = {
     "memberberries": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "FacebookWebClient": "string",
+      "GoogleWebClient": "string",
       "HostedUIDomain": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
