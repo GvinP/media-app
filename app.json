@@ -1,4 +1,9 @@
 {
   "name": "memberberries",
-  "displayName": "memberberries"
+  "displayName": "memberberries",
+  "extra": {
+    "eas": {
+      "projectId": "7f01ebd2-e0d2-4285-849c-2d4fbcc2335f"
+    }
+  }
 }
