@@ -31,7 +31,9 @@ const CreatePostScreen = () => {
   >(createPost);
   const {image, images, video} = route.params;
   const submit = async () => {
-    if (isSubmitting) return;
+    if (isSubmitting) {
+      return;
+    }
     setIsSubmitting(true);
     const input: CreatePostInput = {
       type: 'POST',

@@ -22,7 +22,11 @@ const HomeScreen = () => {
     PostsByDateQuery,
     PostsByDateQueryVariables
   >(postsByDate, {
-    variables: {type: 'POST', sortDirection: ModelSortDirection.DESC, limit: 10},
+    variables: {
+      type: 'POST',
+      sortDirection: ModelSortDirection.DESC,
+      limit: 10,
+    },
   });
   const [isFetchingMore, setIsFetchingMore] = useState(false);
   const posts = data?.postsByDate?.items.filter(post => !post?._deleted);

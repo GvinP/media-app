@@ -20,7 +20,9 @@ const ForgotPasswordScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSendPressed = async ({email}: ForgotPasswordData) => {
-    if (isLoading) return;
+    if (isLoading) {
+      return;
+    }
     setIsLoading(true);
     try {
       const respose = await Auth.forgotPassword(email);

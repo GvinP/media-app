@@ -64,7 +64,9 @@ const CameraScreen = () => {
   };
 
   const takePicture = async () => {
-    if (!isCameraReady || !camera.current || isRecording) return;
+    if (!isCameraReady || !camera.current || isRecording) {
+      return;
+    }
     const options: CameraPictureOptions = {
       quality: 0.5,
       base64: true,
@@ -77,7 +79,9 @@ const CameraScreen = () => {
   };
 
   const startRecording = async () => {
-    if (!isCameraReady || !camera.current || isRecording) return;
+    if (!isCameraReady || !camera.current || isRecording) {
+      return;
+    }
     const options: CameraRecordingOptions = {
       quality: VideoQuality['480p'],
       maxDuration: 60,

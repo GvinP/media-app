@@ -28,7 +28,9 @@ const useCommentService = (postId: string) => {
   >(updatePost);
 
   const incrementNofComments = (amount: 1 | -1) => {
-    if (!post) return;
+    if (!post) {
+      return;
+    }
     doUpdatePost({
       variables: {
         input: {
@@ -41,7 +43,9 @@ const useCommentService = (postId: string) => {
   };
 
   const onCreateComment = async (newComment: string) => {
-    if (!post) return;
+    if (!post) {
+      return;
+    }
     try {
       if (newComment.trim()) {
         await doCreateComment({

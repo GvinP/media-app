@@ -23,7 +23,9 @@ const NewPasswordScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmitPressed = async ({email, password, code}: NewPasswordType) => {
-    if (isLoading) return;
+    if (isLoading) {
+      return;
+    }
     setIsLoading(true);
     try {
       await Auth.forgotPasswordSubmit(email, code, password);

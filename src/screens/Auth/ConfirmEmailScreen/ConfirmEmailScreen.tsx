@@ -31,7 +31,9 @@ const ConfirmEmailScreen = () => {
   const navigation = useNavigation<ConfirmEmailNavigationProp>();
 
   const onConfirmPressed = async ({email, code}: ConfirmEmailData) => {
-    if (isLoading) return;
+    if (isLoading) {
+      return;
+    }
     setIsLoading(true);
     try {
       await Auth.confirmSignUp(email, code);

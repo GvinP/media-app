@@ -25,12 +25,10 @@ const SignUpScreen = () => {
   const navigation = useNavigation<SignUpNavigationProp>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onRegisterPressed = async ({
-    name,
-    email,
-    password,
-  }: SignUpData) => {
-    if (isLoading) return;
+  const onRegisterPressed = async ({name, email, password}: SignUpData) => {
+    if (isLoading) {
+      return;
+    }
     setIsLoading(true);
     try {
       await Auth.signUp({

@@ -68,7 +68,7 @@ const MenuComponent: FC<IMenuComponent> = ({post}) => {
             paddingBottom: insets.bottom,
           },
         }}>
-        <MenuOption onSelect={() => Alert.alert(`Reporting...`)}>
+        <MenuOption onSelect={() => Alert.alert('Reporting...')}>
           <Text style={styles.optionText}>Report</Text>
         </MenuOption>
         {isMyPost && (

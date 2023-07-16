@@ -30,7 +30,9 @@ const SignInScreen = () => {
   const {control, handleSubmit, reset} = useForm<SignInData>();
 
   const onSignInPressed = async ({email, password}: SignInData) => {
-    if (isLoading) return;
+    if (isLoading) {
+      return;
+    }
     setIsLoading(true);
     try {
       await Auth.signIn(email, password);
