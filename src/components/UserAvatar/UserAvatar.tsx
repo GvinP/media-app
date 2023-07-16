@@ -12,14 +12,14 @@ interface IUserAvatar {
 const UserAvatar: FC<IUserAvatar> = ({photoKey, photoUri, style}) => {
   const [photo, setPhoto] = useState<string | null>(null);
   useEffect(() => {
+    const downloadImage = async () => {
+      if (photoKey) {
+        const uri = await Storage.get(photoKey);
+        setPhoto(uri);
+      }
+    };
     downloadImage();
-  }, []);
-  const downloadImage = async () => {
-    if (photoKey) {
-      const uri = await Storage.get(photoKey);
-      setPhoto(uri);
-    }
-  };
+  }, [photoKey]);
   return (
     <Image
       source={{uri: photoUri || photo || DEFAULT_USER_IMAGE}}

@@ -52,7 +52,7 @@ const EditProfileScreen = () => {
       setValue('bio', user.bio);
       setValue('website', user.website);
     }
-  }, [user]);
+  }, [user, setValue]);
 
   const uploadMedia = async (uri: string) => {
     try {

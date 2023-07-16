@@ -18,20 +18,22 @@ const Content: FC<IContent> = ({post, isVisible, toggleLike}) => {
   const [imagesUri, setImagesUri] = useState<string[] | null>(null);
   const [videoUri, setVideoUri] = useState<string | null>(null);
   useEffect(() => {
+    const downloadImage = async () => {
+      if (post.image) {
+        const uri = await Storage.get(post.image);
+        setImageUri(uri);
+      } else if (post.images) {
+        const uris = await Promise.all(
+          post.images.map(img => Storage.get(img)),
+        );
+        setImagesUri(uris);
+      } else if (post.video) {
+        const uri = await Storage.get(post.video);
+        setVideoUri(uri);
+      }
+    };
     downloadImage();
-  }, []);
-  const downloadImage = async () => {
-    if (post.image) {
-      const uri = await Storage.get(post.image);
-      setImageUri(uri);
-    } else if (post.images) {
-      const uris = await Promise.all(post.images.map(img => Storage.get(img)));
-      setImagesUri(uris);
-    } else if (post.video) {
-      const uri = await Storage.get(post.video);
-      setVideoUri(uri);
-    }
-  };
+  }, [post.image, post.images, post.video]);
   if (imageUri) {
     return (
       <DoublePressable onDoublePress={toggleLike}>

@@ -29,4 +29,7 @@ export default StyleSheet.create({
     fontWeight: fonts.weight.semi,
     color: colors.black,
   },
+  row: {
+    flexDirection: 'row',
+  },
 });

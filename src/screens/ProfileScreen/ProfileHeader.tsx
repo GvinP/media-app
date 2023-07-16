@@ -2,12 +2,9 @@ import {View, Text} from 'react-native';
 import {FC} from 'react';
 import styles from './styles';
 import Button from '../../components/Button';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {Auth} from 'aws-amplify';
-import {
-  ProfileNavigationProp,
-  UserProfileRouteProp,
-} from '../../types/navigation';
+import {ProfileNavigationProp} from '../../types/navigation';
 import {User} from '../../API';
 import {useAuthContext} from '../../contexts/AuthContext';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
@@ -18,7 +15,6 @@ interface IProfileHeader {
 
 const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const {userId} = useAuthContext();
-  const route = useRoute<UserProfileRouteProp>();
   const navigation = useNavigation<ProfileNavigationProp>();
   navigation.setOptions({title: user?.username || 'Profile'});
   const navigateToEditProfile = () => navigation.navigate('Edit Profile');
@@ -42,7 +38,7 @@ const ProfileHeader: FC<IProfileHeader> = ({user}) => {
       <Text style={styles.name}>{user?.name}</Text>
       <Text>{user?.bio}</Text>
       {user.id === userId && (
-        <View style={{flexDirection: 'row'}}>
+        <View style={styles.row}>
           <Button title="Edit Profile" onPress={navigateToEditProfile} />
           <Button title="Sign out" onPress={() => Auth.signOut()} />
         </View>

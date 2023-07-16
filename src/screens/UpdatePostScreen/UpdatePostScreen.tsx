@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  Alert,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Text, Image, TextInput, ActivityIndicator} from 'react-native';
 import styles from './styles';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {UpdateRouteProp, UploadNavigationProp} from '../../types/navigation';
@@ -19,13 +12,11 @@ import {
   UpdatePostMutation,
   UpdatePostMutationVariables,
 } from '../../API';
-import {useAuthContext} from '../../contexts/AuthContext';
 import Carousel from '../../components/Carousel/Carousel';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 
 const UpdatePostScreen = () => {
   const navigation = useNavigation<UploadNavigationProp>();
-  const {userId} = useAuthContext();
   const route = useRoute<UpdateRouteProp>();
   const {postId} = route.params;
   const {data, loading, error} = useQuery<GetPostQuery, GetPostQueryVariables>(
@@ -47,7 +38,7 @@ const UpdatePostScreen = () => {
     if (updateData) {
       navigation.goBack();
     }
-  }, [updateData]);
+  }, [updateData, navigation]);
 
   const submit = () =>
     doUpdatePost({
@@ -94,7 +85,7 @@ const UpdatePostScreen = () => {
         multiline
         numberOfLines={5}
       />
-      <View style={{flexDirection: 'row'}}>
+      <View style={styles.row}>
         <Button title="Submit" onPress={submit} />
       </View>
     </View>

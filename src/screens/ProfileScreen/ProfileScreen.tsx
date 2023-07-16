@@ -34,7 +34,7 @@ const ProfileScreen = () => {
   return (
     <FeedGridView
       data={user?.Posts?.items || []}
-      ListHeaderComponent={() => <ProfileHeader user={user} />}
+      ListHeaderComponent={<ProfileHeader user={user} />}
     />
   );
 };

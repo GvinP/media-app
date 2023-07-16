@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  row: {
+    flexDirection: 'row',
+  },
 });
 
 export default styles;

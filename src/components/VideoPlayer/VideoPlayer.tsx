@@ -1,4 +1,4 @@
-import {View, Text, Pressable} from 'react-native';
+import {View, Pressable} from 'react-native';
 import {FC, useState} from 'react';
 import Video from 'react-native-video';
 import Octicons from 'react-native-vector-icons/Octicons';

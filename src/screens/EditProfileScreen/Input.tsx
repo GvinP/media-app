@@ -26,7 +26,7 @@ const Input: FC<IInput> = ({
       render={({field: {value, onChange, onBlur}, fieldState: {error}}) => (
         <View style={styles.inputContainer}>
           <Text style={styles.label}>{label}</Text>
-          <View style={{flex: 1}}>
+          <View style={styles.flex}>
             <TextInput
               {...{onBlur, multiline}}
               value={value || ''}
@@ -63,5 +63,8 @@ const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
     minHeight: 45,
+  },
+  flex: {
+    flex: 1,
   },
 });
